@@ -683,11 +683,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1300227405301315837, guid: 84b445da9122dbd4992aed5c106ddaeb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6106154109336891547, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -715,19 +710,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106154110361829452, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106154110361829452, guid: 84b445da9122dbd4992aed5c106ddaeb,
-        type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 510285070}
-    - target: {fileID: 6106154110361829452, guid: 84b445da9122dbd4992aed5c106ddaeb,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -911994591
-      objectReference: {fileID: 0}
     - target: {fileID: 6106154110361829453, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
 
     [Header("Inventory Slots")]
 
-    [SerializeField] ItemBase _leftHand = null;
     [SerializeField] ItemBase[] _inventory = null;
     int invSlots => _inventory.Length;
     int currCell = 0;
@@ -45,17 +44,9 @@ public class Inventory : MonoBehaviour
 
         void itemDrop(int n)
         {
-            ItemBase item;
-            if (n == 5)
-            {
-                item = _leftHand;
-                _leftHand = null;
-            }
-            else
-            {
-                item = _inventory[n];
-                _inventory[n] = null;
-            }
+            ItemBase item = _inventory[n];
+            _inventory[n] = null;
+
             item.transform.parent = null;
 
             Vector2 newPos = Quaternion.Euler(0, 0, pc.animNum * 45) * Vector2.down;
@@ -68,27 +59,10 @@ public class Inventory : MonoBehaviour
         ui.onItemDrop += itemDrop;
 
         void itemSwap(int i1, int i2)
-        { // 5 - слот левой руки
-            if (i1 == 5 || i2 == 5)
-            {
-                if (i1 == 5)
-                {
-                    i1 = i2;
-                    i2 = 5;
-                }
-                var temp = _leftHand;
-                _leftHand = _inventory[i1];
-                _inventory[i1] = temp;
-
-                moveItemToNewParent(_inventory[i1], RightHand);
-                moveItemToNewParent(_leftHand, LeftHand);
-            }
-            else
-            {
-                var temp = _inventory[i2];
-                _inventory[i2] = _inventory[i1];
-                _inventory[i1] = temp;
-            }
+        { 
+            var temp = _inventory[i2];
+            _inventory[i2] = _inventory[i1];
+            _inventory[i1] = temp;
 
             updateInv();
         }
@@ -194,18 +168,10 @@ public class Inventory : MonoBehaviour
             {
                 _inventory[currCell].ClickDown();
             }
-            else if (_leftHand != null)
-            {
-                _leftHand.ClickDown();
-            }
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         { // right click down
-            if (_leftHand != null)
-            {
-                _leftHand.ClickDown();
-            }
-            else if (_inventory[currCell] != null)
+            if (_inventory[currCell] != null)
             {
                 _inventory[currCell].ClickDown();
             }
@@ -217,18 +183,10 @@ public class Inventory : MonoBehaviour
             {
                 _inventory[currCell].ClickDown();
             }
-            else if (_leftHand != null)
-            {
-                _leftHand.ClickDown();
-            }
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         { // right click up
-            if (_leftHand != null)
-            {
-                _leftHand.ClickDown();
-            }
-            else if (_inventory[currCell] != null)
+            if (_inventory[currCell] != null)
             {
                 _inventory[currCell].ClickDown();
             }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface Item
 {
-    public int MaxStackSize { get; }
+    int MaxStackSize { get; }
 }
