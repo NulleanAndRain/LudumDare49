@@ -10,10 +10,8 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
     public bool selectableSlot;
 
     public GameObject itemHolderPrefab;
-    private RectTransform prefabRect;
 
 	private void Start () {
-        prefabRect = itemHolderPrefab.GetComponent<RectTransform>();
     }
 
 	public void OnPointerDown (PointerEventData eventData) {

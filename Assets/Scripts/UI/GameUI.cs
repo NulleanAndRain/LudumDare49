@@ -18,6 +18,8 @@ public class GameUI : MonoBehaviour
     public Vector2 SelectedCellSize;
     public Vector2 defaultCellSize;
 
+    public ItemInfo ItemInfoObj;
+
     [Header("Animation")]
     public float alphaChannelTime = 1f;
     public float animTime = 1f;

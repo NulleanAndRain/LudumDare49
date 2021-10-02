@@ -39,4 +39,10 @@ public abstract class Item : MonoBehaviour
 
         return true;
     }
+
+    [SerializeField] private string _itemName = string.Empty;
+    public string ItemName => _itemName;
+
+    [SerializeField] private string _itemDescription = string.Empty;
+    public string ItemDescription => _itemDescription;
 }
