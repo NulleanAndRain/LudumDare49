@@ -27,7 +27,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
 
     [SerializeField] private Canvas canvas = null;
     [SerializeField] private GameUI ui = null;
-    [SerializeField] private TMPro.TMP_Text AmountText;
+    [SerializeField] private TMPro.TMP_Text AmountText = null;
 
     private void Awake()
     {

@@ -225,6 +225,7 @@ public class Inventory : MonoBehaviour
         {
             if (_inventory[i].Item.TryAddItems(item.Item))
             {
+                updateInv();
                 return true;
             }
             i++;
