@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -7,14 +9,18 @@ public class WalkerComponent : MonoBehaviour {
     public float Speed;
     public float MaxJumpSpeed;
     public float JumpForce;
+    public float JumpHorizontalSpeed;
+    public float JumpSpeedFactor;
     public float JumpUpTime;
 
+    
+
     private Rigidbody2D rb;
-    private Vector2 _v;
+    //private Vector2 _v;
     private bool _isJumping;
     private float _jumpStartTime;
 
-    public Vector2 MoveVectorRaw { get; set; }
+    public Vector2 MoveVectorRaw { get; private set; }
     public bool CanMove { get; set; } = true;
 
     [Header("Ground check")]
@@ -28,13 +34,18 @@ public class WalkerComponent : MonoBehaviour {
     void FixedUpdate () {
         if (!CanMove) return;
 
-        var velHorisontal = Mathf.Clamp(MoveVectorRaw.x, -1, 1);
-        if (rb.velocity.x < Speed)
+        var velHorisontal = MoveVectorRaw.x;
+        var affectedSpeed = !Checker.IsOnGround ? JumpHorizontalSpeed : Speed;
+        if (Mathf.Abs(rb.velocity.x) < affectedSpeed)
         {
-            var speedLerp = Mathf.Clamp01(Mathf.InverseLerp(Speed, 0, Mathf.Abs(rb.velocity.x)));
-            _v = Vector2.right * velHorisontal * Speed * speedLerp * speedLerp;
+            if (!Checker.IsOnGround) velHorisontal *= JumpSpeedFactor;
+            
+            var speedLerp = Mathf.Clamp01(Mathf.InverseLerp(affectedSpeed, 0, Mathf.Abs(rb.velocity.x)));
+            
+            var _v = Vector2.right * velHorisontal * affectedSpeed * speedLerp * speedLerp * 0.95f;
 
-            rb.AddForce(_v * rb.mass, ForceMode2D.Force);
+            rb.AddForce(_v * rb.mass/40f, ForceMode2D.Impulse);
+
         }
 
         if (_isJumping)
@@ -43,11 +54,29 @@ public class WalkerComponent : MonoBehaviour {
             if (Time.time >= _jumpStartTime + JumpUpTime)
             {
                 _isJumping = false;
+                return;
             }
-            _v = Vector2.up * JumpForce * speedLerp * speedLerp;
+            var _v = Vector2.up * JumpForce  * speedLerp*0.95f;
 
-            rb.AddForce(_v * rb.mass, ForceMode2D.Force);
+            rb.AddForce(_v * rb.mass/50f, ForceMode2D.Impulse);
+
+            
         }
+        if (!Checker.IsOnGround && !_isJumping)
+        {
+            
+            
+        }
+
+        if (Checker.IsOnGround)
+        {
+            _jumpStartTime = Time.time;
+        }
+    }
+
+    public void UpdateMoveVector(Vector2 direction)
+    {
+        MoveVectorRaw = direction.normalized;
     }
 
     public void Jump()
@@ -57,6 +86,8 @@ public class WalkerComponent : MonoBehaviour {
             _isJumping = true;
             _jumpStartTime = Time.time;
         }
+
+        
     }
 
     public void StopJump()
