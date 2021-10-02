@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(WalkerComponent), typeof(Health))]
 public class PlayerControl : MonoBehaviour
 {
+    public GameUI gameUI; //added
 
-    public GameUI gameUI = null; //added
+    public Transform viewPos;
+
+    public bool isFacingToCursor;
+
+    private Vector3 _localScale = Vector3.one;
 
     private Vector2 _vel;
 
     private Animator animator;
     private Health health;
     private WalkerComponent walker;
-
-    public Transform viewPos;
     public int animNum { get; private set; }
 
-    private Vector3 _localScale = Vector3.one;
-
-    public bool isFacingToCursor;
-    void Start()
+    private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<Health>();
@@ -38,7 +36,7 @@ public class PlayerControl : MonoBehaviour
         {
             _vel.x = 0;
             _vel.y = 0;
-            walker.MoveVectorRaw = _vel;
+            walker.UpdateMoveVector(_vel);
             animator.SetBool("isWalking", false);
             animator.SetBool("isDowned", true);
             if (animNum < 4)
@@ -46,6 +44,7 @@ public class PlayerControl : MonoBehaviour
                 _localScale.x *= -1;
                 transform.localScale = _localScale;
             }
+
             StartCoroutine(waitForRevive());
         }
 
@@ -62,18 +61,15 @@ public class PlayerControl : MonoBehaviour
         health.onDowned += revive;
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            PauseControl.TogglePause();
-        }
+        if (Input.GetButtonDown("Cancel")) PauseControl.TogglePause();
 
         if (health.isDowned || PauseControl.isPaused) return;
         _vel.x = Input.GetAxis("Horizontal");
         _vel.y = Input.GetAxis("Vertical");
 
-        float _magn = _vel.magnitude;
+        var _magn = _vel.magnitude;
 
         animator.SetBool("isWalking", _magn > 1e-3);
 
@@ -87,17 +83,11 @@ public class PlayerControl : MonoBehaviour
 
         animator.SetInteger("currDir", animNum);
 
-        walker.MoveVectorRaw = _vel;
+        walker.UpdateMoveVector(_vel);
 
         if (Input.GetButtonDown("Jump"))
-        {
             // todo: add animation
             walker.Jump();
-        }
-        else if (Input.GetButtonUp("Jump"))
-        {
-            walker.StopJump();
-        }
+        else if (Input.GetButtonUp("Jump")) walker.StopJump();
     }
-
 }
