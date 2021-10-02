@@ -17,6 +17,8 @@ public class ItemBase : MonoBehaviour
     public GameObject WorldspacePart;
     public GameObject ActiveItemPart;
 
+    public Item Item;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,16 +50,16 @@ public class ItemBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("collision");
         if (collision.TryGetComponent(out Inventory inv))
         {
-            //Debug.Log("collision with inventory");
             if (inv.AddItem(this))
             {
                 DisableWorldspaceItem();
             }
         }
     }
+
+
 
     public void HandleDrop()
     {
