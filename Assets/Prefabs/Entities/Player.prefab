@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 10595620}
   - component: {fileID: 10595621}
+  - component: {fileID: 1717067451}
   m_Layer: 0
   m_Name: groundCollider
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10595619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.022, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7036365330330470452}
@@ -41,12 +42,24 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016699553, y: -0.05928436}
-  m_Size: {x: 0.25046206, y: 0.8997182}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.27, y: 0.06560013}
+  m_Direction: 1
+--- !u!114 &1717067451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10595619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0edf22c3a3be840b41f42428c1d845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &159596009
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,7 +745,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb54fe1601361242a72c48f581f2e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  Speed: 13
+  MaxJumpSpeed: 5
+  JumpForce: 200
+  JumpUpTime: 0.2
+  Checker: {fileID: 1717067451}
 --- !u!114 &1116268228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,13 +757,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7036365330330470455}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4d146c8ed28bc943830e799b48fe60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 0}
-  center: {fileID: 0}
+  center: {fileID: 1354186596}
   InventoryFolder: {fileID: 159596010}
   RightHand: {fileID: 7036365330640289206}
   LeftHand: {fileID: 5394702130460501163}

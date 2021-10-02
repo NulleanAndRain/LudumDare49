@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
-public class ItemBase : MonoBehaviour {
+public class ItemBase : MonoBehaviour
+{
     public Action onClickDown = delegate { };
     public Action onClickUp = delegate { };
 
@@ -11,40 +12,66 @@ public class ItemBase : MonoBehaviour {
     public Action onUnselect = delegate { };
 
     private SpriteRenderer _renderer;
+    private Rigidbody2D rb;
     public Collider2D pickUpTrigger;
+    public GameObject WorldspacePart;
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         _renderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public Sprite GetSprite => _renderer.sprite;
 
-    public void ClickDown () {
+    public void ClickDown()
+    {
         onClickDown();
     }
-    public void ClickUp () {
+    public void ClickUp()
+    {
         onClickUp();
     }
 
-    public void Select () {
+    public void Select()
+    {
         onSelect();
     }
-    public void Unselect () {
+    public void Unselect()
+    {
         onUnselect();
     }
 
-    private void OnTriggerEnter2D (Collider2D collision) {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         //Debug.Log("collision");
-        if (collision.TryGetComponent(out Inventory inv)) {
+        if (collision.TryGetComponent(out Inventory inv))
+        {
             //Debug.Log("collision with inventory");
-            if (inv.AddItem(this)) {
-                pickUpTrigger.enabled = false;
+            if (inv.AddItem(this))
+            {
+                DisableWorldspaceItem();
             }
         }
     }
 
-    public void handleDrop () {
+    public void HandleDrop()
+    {
+        EnableWorldspaceItem();
+    }
+
+    private void DisableWorldspaceItem()
+    {
+        rb.isKinematic = true;
+        WorldspacePart.SetActive(false);
+        pickUpTrigger.enabled = false;
+    }
+
+    private void EnableWorldspaceItem()
+    {
+        rb.isKinematic = false;
+        WorldspacePart.SetActive(true);
         pickUpTrigger.enabled = true;
     }
 }

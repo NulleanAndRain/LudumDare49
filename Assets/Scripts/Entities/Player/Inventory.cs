@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
             Vector2 newPos = Quaternion.Euler(0, 0, pc.animNum * 45) * Vector2.down;
 
             item.transform.position = (Vector2)center.position + newPos;
-            item.handleDrop();
+            item.HandleDrop();
 
             updateInv();
         }
