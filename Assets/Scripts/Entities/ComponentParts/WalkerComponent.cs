@@ -5,9 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class WalkerComponent : MonoBehaviour {
     public float speed;
-
+    public float jumpForce;
 
     private Rigidbody2D rb;
+    private Vector2 _v;
 
     public Vector2 moveVectorRaw { get; set; }
     public bool canMove { get; set; } = true;
@@ -16,8 +17,7 @@ public class WalkerComponent : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    Vector2 _v;
-    private void FixedUpdate () {
+    void FixedUpdate () {
         if (!canMove) return;
 
         moveVectorRaw = Vector2.ClampMagnitude(moveVectorRaw, 1);
@@ -29,4 +29,18 @@ public class WalkerComponent : MonoBehaviour {
             rb.AddForce(_v * rb.mass, ForceMode2D.Force);
         }
 	}
+
+    public void Jump()
+    {
+        if (IsOnGround)
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    public bool IsOnGround
+    {
+        get
+        {
+            return true;
+        }
+    }
 }

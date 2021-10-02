@@ -16,8 +16,9 @@ public class PlayerControl : MonoBehaviour
     private WalkerComponent walker;
 
     public Transform viewPos;
+    public int animNum { get; private set; }
 
-    Vector3 _ls = Vector3.one;
+    private Vector3 _localScale = Vector3.one;
 
     public bool isFacingToCursor;
     void Start()
@@ -42,8 +43,8 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("isDowned", true);
             if (animNum < 4)
             {
-                _ls.x *= -1;
-                transform.localScale = _ls;
+                _localScale.x *= -1;
+                transform.localScale = _localScale;
             }
             StartCoroutine(waitForRevive());
         }
@@ -54,16 +55,20 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("isDowned", false);
             health.Revive();
             health.Heal(health.MaxHealth);
-            _ls = Vector3.one;
-            transform.localScale = _ls;
+            _localScale = Vector3.one;
+            transform.localScale = _localScale;
         }
 
         health.onDowned += revive;
     }
 
-    public int animNum { get; private set; }
     void Update()
     {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            PauseControl.TogglePause();
+        }
+
         if (health.isDowned || PauseControl.isPaused) return;
         _vel.x = Input.GetAxis("Horizontal");
         _vel.y = Input.GetAxis("Vertical");
@@ -84,8 +89,11 @@ public class PlayerControl : MonoBehaviour
 
         walker.moveVectorRaw = _vel;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            PauseControl.TogglePause();
+        if (Input.GetButtonDown("Jump"))
+        {
+            // todo: add animation
+            walker.Jump();
+        }
     }
 
 }

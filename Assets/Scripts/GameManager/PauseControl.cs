@@ -10,12 +10,12 @@ public class PauseControl : MonoBehaviour {
     public static event Action onUnpause = delegate { };
 
     public static void Pause() {
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         onPause();
     }
 
     public static void Unpause() {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
         onUnpause();
     }
 
