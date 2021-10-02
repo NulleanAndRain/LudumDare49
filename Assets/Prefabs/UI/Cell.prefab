@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -12.49, y: 12.49}
   m_SizeDelta: {x: 30, y: 24}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &5333542734918617480
@@ -297,12 +297,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c29d7822539da4f92e21eb187dc7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  ui: {fileID: 0}
   CellNum: 0
   selectableSlot: 1
-  AmountText: {fileID: 7124245223673923698}
   Sprite: {fileID: 2603762380097700098}
+  canvas: {fileID: 0}
+  ui: {fileID: 0}
+  AmountText: {fileID: 7124245223673923698}
 --- !u!1001 &2292300372862568754
 PrefabInstance:
   m_ObjectHideFlags: 0
