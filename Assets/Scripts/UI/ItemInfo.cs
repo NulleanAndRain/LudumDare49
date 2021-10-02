@@ -5,15 +5,16 @@ using TMPro;
 
 public class ItemInfo : MonoBehaviour
 {
-    [SerializeField] TMP_Text HeaderText = null;
-    [SerializeField] TMP_Text DescripitonText = null;
-    [SerializeField] RectTransform _rect = null;
-    [SerializeField] RectTransform _rectHeader = null;
+    [SerializeField] private TMP_Text HeaderText = null;
+    [SerializeField] private TMP_Text DescripitonText = null;
+    [SerializeField] private RectTransform _rect = null;
+    [SerializeField] private RectTransform _rectHeader = null;
 
-    [SerializeField] int _minWidth = 200;
-    [SerializeField] int _maxWidth = 350;
-    [SerializeField] int _minHeigth = 120;
+    [SerializeField] private int _minWidth = 200;
+    [SerializeField] private int _maxWidth = 350;
+    [SerializeField] private int _minHeigth = 120;
 
+    [SerializeField] private Camera _camera = null;
 
     public string Header
     {
@@ -41,6 +42,16 @@ public class ItemInfo : MonoBehaviour
         ToggleOff();
     }
 
+    public void Update()
+    {
+        if (!_rect.gameObject.activeSelf) return;
+
+        var pos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = transform.position.z;
+
+        transform.position = pos;
+    }
+
     public void ToggleOn()
     {
         _rect.gameObject.SetActive(true);
@@ -52,7 +63,7 @@ public class ItemInfo : MonoBehaviour
 
     private void CheckForFit()
     { // todo: fit on screen (?)
-        var r = _rect.rect;
+        var r = _rect.position;
 
         var width = Mathf.Clamp(
             Mathf.Max(
@@ -62,14 +73,16 @@ public class ItemInfo : MonoBehaviour
             _maxWidth
         );
 
-        r.width = width;
+        r.x += width;
+
+        _rect.right = r;
 
         var heigth = Mathf.Max(
             _minHeigth,
             _rectHeader.rect.height + DescripitonText.renderedHeight
         );
 
-        r.height = heigth;
+        r.y = heigth;
 
         //_rect.rect = r;
     }

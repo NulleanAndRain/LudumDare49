@@ -30,39 +30,9 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler, IPoint
     [SerializeField] private GameUI ui = null;
     [SerializeField] private TMPro.TMP_Text AmountText = null;
 
-    private bool _mouseIsOver = false;
-    private Camera _camera;
-
     private void Awake()
     {
         Rect = GetComponent<RectTransform>();
-        _camera = ui.CameraUI;
-    }
-
-    private void Update()
-    {
-        var info = ui.ItemInfoObj;
-        if (!_mouseIsOver || ContainingItem == null)
-        {
-            info.ToggleOff();
-            return;
-        }
-
-        info.Header = ContainingItem.ItemName;
-        info.Description = ContainingItem.ItemDescription;
-
-        //RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent as RectTransform, Input.mousePosition, _camera, out var pos);
-        //info.transform.position = _camera.ViewportToScreenPoint(Input.mousePosition);
-        //info.transform.localPosition = pos;
-
-        //info.transform.localPosition = Input.mousePosition;
-        var pos = _camera.ScreenToWorldPoint(_pd.position);
-        pos.z = info.transform.position.z;
-
-        info.transform.position = pos;
-
-        info.ToggleOn();
-
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -96,16 +66,19 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler, IPoint
         Sprite.gameObject.SetActive(toggle);
     }
 
-    PointerEventData _pd;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _mouseIsOver = true;
-        _pd = eventData;
+        if (ContainingItem == null) return;
+        var info = ui.ItemInfoObj;
+
+        info.Header = ContainingItem.ItemName;
+        info.Description = ContainingItem.ItemDescription;
+        info.Update();
+        info.ToggleOn();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _mouseIsOver = false;
-        _pd = null;
+        ui.ItemInfoObj.ToggleOff();
     }
 }
