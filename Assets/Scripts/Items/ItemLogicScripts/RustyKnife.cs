@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class RustyKnife : Item
 {
+    public override bool TryAddItems(Item item)
+    {
+        return false;
+    }
 }

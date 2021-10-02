@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
+public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+{
     public int CellNum;
     public bool selectableSlot;
     public Image Sprite;
@@ -34,22 +35,27 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
         Rect = GetComponent<RectTransform>();
     }
 
-    public void OnPointerDown (PointerEventData eventData) {
+    public void OnPointerDown(PointerEventData eventData)
+    {
         if (selectableSlot) ui.SelectCell(CellNum);
     }
 
-    public void createItemHolder () {
+    public void createItemHolder()
+    {
         var holder = Instantiate(ItemHolderPrefab, transform);
         holder.SetActive(false);
         holder.GetComponent<DragableItem>().init(canvas, ui);
         Sprite = holder.GetComponent<Image>();
     }
 
-    public void OnDrop (PointerEventData eventData) {
+    public void OnDrop(PointerEventData eventData)
+    {
         OnPointerDown(eventData);
         // todo: finish this method
-        if (eventData.pointerDrag != null) {
-            if (eventData.pointerDrag.TryGetComponent(out DragableItem item)) {
+        if (eventData.pointerDrag != null)
+        {
+            if (eventData.pointerDrag.TryGetComponent(out DragableItem item))
+            {
                 item.SetSlotTarget(CellNum);
             }
         }
@@ -60,24 +66,24 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
         Sprite.gameObject.SetActive(toggle);
     }
 
-    private void OnMouseOver()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (ContainingItem == null) return;
+        if (ContainingItem == null)
+        {
+            ui.ItemInfoObj.ToggleOff(); 
+            return;
+        }
+        var info = ui.ItemInfoObj;
 
-        Debug.Log("hover");
-
-        var obj = ui.ItemInfoObj;
-        obj.Header = ContainingItem.ItemName;
-        obj.Description = ContainingItem.ItemDescription;
-
-        obj.transform.localPosition = Input.mousePosition;
-
-        obj.ToggleOn();
-
+        info.Header = ContainingItem.ItemName;
+        info.Description = ContainingItem.ItemDescription;
+        info.FixedUpdate();
+        info.ToggleOn();
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
+        if (ContainingItem == null) return;
         ui.ItemInfoObj.ToggleOff();
     }
 }

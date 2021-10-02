@@ -5,23 +5,26 @@ using TMPro;
 
 public class ItemInfo : MonoBehaviour
 {
-    [SerializeField] TMP_Text HeaderText = null;
-    [SerializeField] TMP_Text DescripitonText = null;
-    [SerializeField] RectTransform _rect = null;
-    [SerializeField] RectTransform _rectHeader = null;
+    [SerializeField] private TMP_Text HeaderText = null;
+    [SerializeField] private TMP_Text DescripitonText = null;
+    [SerializeField] private RectTransform _rect = null;
+    [SerializeField] private RectTransform _rectHeader = null;
 
-    [SerializeField] int _minWidth = 200;
-    [SerializeField] int _maxWidth = 350;
-    [SerializeField] int _minHeigth = 120;
+    [SerializeField] private int _minWidth = 200;
+    [SerializeField] private int _maxWidth = 350;
+    [SerializeField] private int _minHeigth = 40;
+    [SerializeField] private int _heigthAdding = 20;
 
+    [SerializeField] private Camera _camera = null;
 
     public string Header
     {
         get => HeaderText.text;
         set
         {
-            CheckForFit();
             HeaderText.text = value;
+            if (_rect.gameObject.activeSelf)
+                CheckForFit();
         }
     }
 
@@ -30,8 +33,9 @@ public class ItemInfo : MonoBehaviour
         get => DescripitonText.text;
         set
         {
-            CheckForFit();
             DescripitonText.text = value;
+            if (_rect.gameObject.activeSelf)
+                CheckForFit();
         }
 
     }
@@ -41,8 +45,19 @@ public class ItemInfo : MonoBehaviour
         ToggleOff();
     }
 
+    public void FixedUpdate()
+    {
+        if (!_rect.gameObject.activeSelf) return;
+
+        var pos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        pos.z = transform.position.z;
+
+        transform.position = pos;
+    }
+
     public void ToggleOn()
     {
+        CheckForFit();
         _rect.gameObject.SetActive(true);
     }
     public void ToggleOff()
@@ -51,27 +66,33 @@ public class ItemInfo : MonoBehaviour
     }
 
     private void CheckForFit()
-    { // todo: fit on screen (?)
-        var r = _rect.rect;
+    {
+        IEnumerator _coroutine()
+        {
+            var width = Mathf.Clamp(
+                Mathf.Max(
+                    HeaderText.renderedWidth,
+                    DescripitonText.renderedWidth),
+                _minWidth,
+                _maxWidth
+            );
 
-        var width = Mathf.Clamp(
-            Mathf.Max(
-                HeaderText.renderedWidth,
-                DescripitonText.renderedWidth),
-            _minWidth,
-            _maxWidth
-        );
+            var r = new Vector2(width, _minHeigth);
 
-        r.width = width;
+            _rect.sizeDelta = r;
 
-        var heigth = Mathf.Max(
-            _minHeigth,
-            _rectHeader.rect.height + DescripitonText.renderedHeight
-        );
+            yield return new WaitForEndOfFrame();
 
-        r.height = heigth;
+            var heigth = Mathf.Max(
+                _rectHeader.rect.height + _minHeigth,
+                _rectHeader.rect.height + DescripitonText.renderedHeight + _heigthAdding
+            );
 
-        //_rect.rect = r;
+            r.y = heigth;
+
+            _rect.sizeDelta = r;
+        }
+        StartCoroutine(_coroutine());
     }
 
 
