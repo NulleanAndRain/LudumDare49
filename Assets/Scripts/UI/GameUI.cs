@@ -30,8 +30,6 @@ public class GameUI : MonoBehaviour
     private Image hp_bar_back_img;
     private Image hp_bar_heal_img;
     public float hpTime;
-    //public float perToHealthFactor; // множитель относительно 100 хп, нужен чтобы хп соответствовало размеру в пикселях (100hp на 200px это perToHealthFactor = 2)
-    // оно тебе не надо, считай в процентах от Health.MaxHealth
 
 
     //[Header("Pause")]
@@ -51,6 +49,26 @@ public class GameUI : MonoBehaviour
         PauseControl.Unpause();
         inventoryPositionY = inventoryGroup.transform.localPosition.y;
         menuGruopPositionY = gameMenuGroup.transform.localPosition.y;
+        //InitHPBar();
+    }
+
+  //  private void FindObjects() {
+  //      // здесь была написана хуета поэтому я ее отключил
+  //      pausePanel = GameObject.Find("PausePanel");
+        //pauseControl = GameObject.Find("GameManager").GetComponent<PauseControl>();
+        //pauseButton = GameObject.Find("PauseButton");
+  //  }
+
+    private void SetInitialState()
+    {
+        setActiveRightCell(0);
+        //pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 0), 0);
+        //pausePanel.SetActive(false);
+        //gameMenuGroup.transform.DOLocalMoveY(menuGruopPositionY + 1200, 0).SetUpdate(true);
+    }
+
+    private void InitHPBar()
+    {
 
         hp_bar_img = hp_bar.GetComponent<Image>();
         hp_bar_back_img = hp_bar_behind.GetComponent<Image>();
@@ -71,20 +89,6 @@ public class GameUI : MonoBehaviour
         //hp_bar_heal.SetActive(false);
     }
 
-  //  private void FindObjects() {
-  //      // здесь была написана хуета поэтому я ее отключил
-  //      pausePanel = GameObject.Find("PausePanel");
-        //pauseControl = GameObject.Find("GameManager").GetComponent<PauseControl>();
-        //pauseButton = GameObject.Find("PauseButton");
-  //  }
-
-    private void SetInitialState()
-    {
-        setActiveRightCell(0);
-        //pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 0), 0);
-        //pausePanel.SetActive(false);
-        gameMenuGroup.transform.DOLocalMoveY(menuGruopPositionY + 1200, 0).SetUpdate(true);
-    }
     public void NextScene(string SceneName)
     {
         SceneManager.LoadScene(SceneName);

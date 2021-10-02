@@ -183,7 +183,7 @@ public class Inventory : MonoBehaviour
     }
     void updateLeftHandStot()
     {
-        ui.updateLeftHandSprite(_leftHand != null ? _leftHand.GetSprite : null);
+        //ui.updateLeftHandSprite(_leftHand != null ? _leftHand.GetSprite : null);
     }
 
     void inputItemControl()
