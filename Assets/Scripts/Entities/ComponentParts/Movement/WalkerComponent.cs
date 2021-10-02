@@ -13,6 +13,14 @@ public class WalkerComponent : MonoBehaviour {
     public Vector2 moveVectorRaw { get; set; }
     public bool canMove { get; set; } = true;
 
+    [Header("Ground check")]
+    public GroundChecker Checker;
+
+
+    // onground check overlap areas
+    private Vector2 _overlap1 = Vector2.zero;
+    private Vector2 _overlap2 = Vector2.zero;
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -36,11 +44,5 @@ public class WalkerComponent : MonoBehaviour {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    public bool IsOnGround
-    {
-        get
-        {
-            return true;
-        }
-    }
+    public bool IsOnGround => Checker.IsOnGround;
 }
