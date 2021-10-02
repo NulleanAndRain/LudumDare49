@@ -34,9 +34,9 @@ public class GameUI : MonoBehaviour
     // оно тебе не надо, считай в процентах от Health.MaxHealth
 
 
-    [Header("Pause")]
-    public GameObject pausePanel;
-    public GameObject pauseButton;
+    //[Header("Pause")]
+    //public GameObject pausePanel;
+    //public GameObject pauseButton;
     private float inventoryPositionY;
     private float menuGruopPositionY;
 
@@ -81,8 +81,8 @@ public class GameUI : MonoBehaviour
     private void SetInitialState()
     {
         setActiveRightCell(0);
-        pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 0), 0);
-        pausePanel.SetActive(false);
+        //pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 0), 0);
+        //pausePanel.SetActive(false);
         gameMenuGroup.transform.DOLocalMoveY(menuGruopPositionY + 1200, 0).SetUpdate(true);
     }
     public void NextScene(string SceneName)
@@ -111,34 +111,34 @@ public class GameUI : MonoBehaviour
         onCellClick(n);
     }
 
-    public void SetPause() { // edited
-        if (PauseControl.isPaused) {
-            PauseControl.Unpause();
-            HidePauseMenu();
-        } else {
-            PauseControl.Pause();
-            ShowPauseMenu();
-        }
-    }
+    //public void SetPause() { // edited
+    //    if (PauseControl.isPaused) {
+    //        PauseControl.Unpause();
+    //        HidePauseMenu();
+    //    } else {
+    //        PauseControl.Pause();
+    //        ShowPauseMenu();
+    //    }
+    //}
 
-    public void ShowPauseMenu()
-    {
-        pausePanel.SetActive(true);
-        pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 100), alphaChannelTime).SetUpdate(true);
-        inventoryGroup.transform.DOLocalMoveY(inventoryPositionY - 300, animTime).SetUpdate(true);
-        gameMenuGroup.transform.DOLocalMoveY(menuGruopPositionY, animTime).SetEase(Ease.OutCubic).SetUpdate(true);
-        pauseButton.SetActive(false);
-    }
+    //public void ShowPauseMenu()
+    //{
+    //    pausePanel.SetActive(true);
+    //    pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 100), alphaChannelTime).SetUpdate(true);
+    //    inventoryGroup.transform.DOLocalMoveY(inventoryPositionY - 300, animTime).SetUpdate(true);
+    //    gameMenuGroup.transform.DOLocalMoveY(menuGruopPositionY, animTime).SetEase(Ease.OutCubic).SetUpdate(true);
+    //    pauseButton.SetActive(false);
+    //}
 
-    public void HidePauseMenu()
-    {
-        gameMenuGroup.transform.DOLocalMoveY(menuGruopPositionY + 1200, animTime * 0.5f /*или поставить 0?*/).SetUpdate(true);
-        inventoryGroup.transform.DOLocalMoveY(inventoryPositionY, animTime).SetUpdate(true);
-        pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 0), alphaChannelTime);
-        pausePanel.SetActive(false);
-        pauseButton.SetActive(true);
+    //public void HidePauseMenu()
+    //{
+    //    gameMenuGroup.transform.DOLocalMoveY(menuGruopPositionY + 1200, animTime * 0.5f /*или поставить 0?*/).SetUpdate(true);
+    //    inventoryGroup.transform.DOLocalMoveY(inventoryPositionY, animTime).SetUpdate(true);
+    //    pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 0), alphaChannelTime);
+    //    pausePanel.SetActive(false);
+    //    pauseButton.SetActive(true);
         
-    }
+    //}
 
     //public void HealthScale(float percent)
     //{

@@ -88,8 +88,8 @@ public class PlayerControl : MonoBehaviour {
 
         walker.moveVectorRaw = _vel;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-            gameUI.SetPause();
+        //if (Input.GetKeyDown(KeyCode.Escape))
+            //gameUI.SetPause();
     }
 
 }
