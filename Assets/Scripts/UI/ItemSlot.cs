@@ -42,6 +42,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
         var holder = Instantiate(ItemHolderPrefab, transform);
         holder.SetActive(false);
         holder.GetComponent<DragableItem>().init(canvas, ui);
+        Sprite = holder.GetComponent<Image>();
     }
 
     public void OnDrop (PointerEventData eventData) {
@@ -54,9 +55,16 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
         }
     }
 
+    public void SetActiveSprite(bool toggle)
+    {
+        Sprite.gameObject.SetActive(toggle);
+    }
+
     private void OnMouseOver()
     {
         if (ContainingItem == null) return;
+
+        Debug.Log("hover");
 
         var obj = ui.ItemInfoObj;
         obj.Header = ContainingItem.ItemName;

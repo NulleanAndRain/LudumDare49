@@ -209,16 +209,8 @@ public class GameUI : MonoBehaviour
     
     public void updateInventorySprite (int n, Sprite sprite, int itemAmount) {
         var cell = InvSlots[n];
-        var img = cell.Sprite;
-        if (sprite != null)
-        {
-            img.gameObject.SetActive(true);
-        }
-        else
-        {
-            img.gameObject.SetActive(false);
-        }
-        img.sprite = sprite;
+        cell.Sprite.sprite = sprite;
+        cell.SetActiveSprite(sprite != null);
         cell.Amount = itemAmount;
     }
 

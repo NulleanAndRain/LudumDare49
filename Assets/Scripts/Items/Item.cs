@@ -16,9 +16,10 @@ public abstract class Item : MonoBehaviour
         {
             if (value > 0)
             {
-                if (_currentCount != value)
+                var newVal = Mathf.Clamp(value, 0, MaxStackSize);
+                if (_currentCount != newVal)
                 {
-                    _currentCount = value;
+                    _currentCount = newVal;
                     OnItemAmountChange();
                 }
             }
