@@ -13,8 +13,9 @@ public class GameUI : MonoBehaviour
     public GameObject gameMenuGroup;
     public GameObject inventoryGroup;
     //public GameObject leftArmItem;
-    public GameObject[] mainItem;
+    public ItemSlot[] InvSlots;
     public Inventory PlayerInventory;
+    public GameObject ItemHolderPrefab;
 
     public Vector2 SelectedCellSize;
     public Vector2 defaultCellSize;
@@ -102,11 +103,11 @@ public class GameUI : MonoBehaviour
     /// </summary>
     /// <param name="n"></param>
     public void setActiveCell(int n) {
-        for (int i = 0; i < mainItem.Length; i++) {
+        for (int i = 0; i < InvSlots.Length; i++) {
             if (i == n)
-                mainItem[n].GetComponent<RectTransform>().sizeDelta = SelectedCellSize;
+                InvSlots[n].GetComponent<RectTransform>().sizeDelta = SelectedCellSize;
             else
-                mainItem[i].GetComponent<RectTransform>().sizeDelta = defaultCellSize;
+                InvSlots[i].GetComponent<RectTransform>().sizeDelta = defaultCellSize;
         }
     }
 
@@ -206,22 +207,19 @@ public class GameUI : MonoBehaviour
         //hp_bar_heal.SetActive(false);
     }
     
-    public void updateInventorySprite (int n, Sprite sprite) {
-        updateSpriteOnCell(mainItem[n], sprite);
-    }
-
-    //public void updateLeftHandSprite (Sprite sprite) {
-    //    updateSpriteOnCell(leftArmItem, sprite);
-    //}
-
-    private void updateSpriteOnCell (GameObject cell, Sprite sprite) {
-        var img = cell.transform.GetChild(0).GetComponent<Image>();
-        if (sprite != null) {
+    public void updateInventorySprite (int n, Sprite sprite, int itemAmount) {
+        var cell = InvSlots[n];
+        var img = cell.Sprite;
+        if (sprite != null)
+        {
             img.gameObject.SetActive(true);
-        } else {
+        }
+        else
+        {
             img.gameObject.SetActive(false);
         }
         img.sprite = sprite;
+        cell.Amount = itemAmount;
     }
 
     public void initItemDrop (int n) {

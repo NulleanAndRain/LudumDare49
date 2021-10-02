@@ -152,7 +152,14 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < invSlots; i++)
         {
             var item = _inventory[i];
-            ui.updateInventorySprite(i, item != null ? item.GetSprite : null);
+            if (item != null)
+            {
+                ui.updateInventorySprite(i, item.GetSprite, item.Item.CurrentCount);
+            }
+            else
+            {
+                ui.updateInventorySprite(i, null, 0);
+            }
 
             if (item != null)
             {
