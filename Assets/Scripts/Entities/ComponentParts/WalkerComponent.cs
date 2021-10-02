@@ -24,7 +24,8 @@ public class WalkerComponent : MonoBehaviour {
         moveVectorRaw = Vector2.ClampMagnitude(moveVectorRaw, 1);
         if (rb.velocity.x < speed)
         {
-            _v = moveVectorRaw * speed;
+            var speedLerp = Mathf.Clamp01(Mathf.InverseLerp(speed, 0, Mathf.Abs(rb.velocity.x)));
+            _v = moveVectorRaw * speed * speedLerp * speedLerp;
 
             rb.AddForce(_v * rb.mass, ForceMode2D.Force);
         }
