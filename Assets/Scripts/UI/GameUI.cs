@@ -61,7 +61,7 @@ public class GameUI : MonoBehaviour
 
     private void SetInitialState()
     {
-        setActiveRightCell(0);
+        setActiveCell(0);
         //pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 0), 0);
         //pausePanel.SetActive(false);
         //gameMenuGroup.transform.DOLocalMoveY(menuGruopPositionY + 1200, 0).SetUpdate(true);
@@ -98,7 +98,7 @@ public class GameUI : MonoBehaviour
     /// Делает выбранную клетку больше и возвращает осатальные к обычному размеру
     /// </summary>
     /// <param name="n"></param>
-    public void setActiveRightCell(int n) {
+    public void setActiveCell(int n) {
         for (int i = 0; i < mainItem.Length; i++) {
             if (i == n)
                 mainItem[n].GetComponent<RectTransform>().sizeDelta = SelectedCellSize;

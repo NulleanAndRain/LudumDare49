@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1116268228, guid: acecbdcf9aedf44499f6eadd064b5f07, type: 3}
       propertyPath: DropVertOffset
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7036365330330470452, guid: acecbdcf9aedf44499f6eadd064b5f07,
         type: 3}
@@ -178,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 7036365330330470452, guid: acecbdcf9aedf44499f6eadd064b5f07,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7036365330330470452, guid: acecbdcf9aedf44499f6eadd064b5f07,
         type: 3}

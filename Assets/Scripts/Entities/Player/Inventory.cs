@@ -15,8 +15,30 @@ public class Inventory : MonoBehaviour
     [Header("Inventory Slots")]
 
     [SerializeField] ItemBase[] _inventory = null;
-    int invSlots => _inventory.Length;
-    int currCell = 0;
+    private int invSlots;
+    private int _cell = 0;
+    private int currCell
+    {
+        get => _cell; set
+        {
+            _cell = value;
+            var oldItem = _inventory[_cell];
+            if (oldItem != null)
+            {
+                oldItem.Unselect();
+                moveItemToNewParent(oldItem, InventoryFolder);
+            }
+
+            var newItem = _inventory[_cell];
+            if (newItem != null)
+            {
+                newItem.Select();
+                moveItemToNewParent(newItem, RightHand);
+            }
+            ui.setActiveCell(_cell);
+        }
+    }
+
 
     [Header("Controls")]
 
@@ -31,12 +53,13 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        invSlots = _inventory.Length;
         pc = GetComponent<PlayerControl>();
 
         void cellOnClick(int n)
         {
             if (isCellClickable)
-                setActiveRightCell(n);
+                currCell = n;
         }
         ui.onCellClick += cellOnClick;
 
@@ -51,18 +74,18 @@ public class Inventory : MonoBehaviour
             item.transform.parent = null;
 
             // todo: item droping
-            var dir = Vector2.ClampMagnitude(
-                Camera.main.ScreenToWorldPoint(Input.mousePosition)
-                - transform.position, dropDistance);
+            var dir = Vector2.right * transform.localPosition.x * dropDistance;
 
+            // todo: ignore player at raycast
             var hit = Physics2D.Raycast(transform.position, dir, dropDistance);
             if (hit.collider != null)
             {
-                item.transform.position = hit.point + Vector2.up * DropVertOffset;
+                var p = hit.point + Vector2.up * DropVertOffset;
+                item.transform.position = p;
             }
             else
             {
-                item.transform.position = (Vector2)center.position + dir;
+                item.transform.position = (Vector2)center.position + dir + Vector2.up * DropVertOffset;
             }
             item.HandleDrop();
 
@@ -106,7 +129,7 @@ public class Inventory : MonoBehaviour
             float mw = Input.GetAxisRaw("Mouse ScrollWheel");
             if (mw != 0)
             {
-                var cell = currCell; // если менять напрямую currCell, выбор предметов ломается
+                var cell = currCell;
                 if (mw < -0.1)
                 {
                     cell++;
@@ -119,57 +142,31 @@ public class Inventory : MonoBehaviour
                     if (cell < 0)
                         cell = invSlots - 1;
                 }
-                setActiveRightCell(cell);
+                ;
             }
         }
         // Numbers 
         if (activeNumbersCell)
         {
             if (Input.GetKey(KeyCode.Alpha1))
-                setActiveRightCell(0);
+                currCell = 0;
             if (Input.GetKey(KeyCode.Alpha2))
-                setActiveRightCell(1);
+                currCell = 1;
             if (Input.GetKey(KeyCode.Alpha3))
-                setActiveRightCell(2);
+                currCell = 2;
             if (Input.GetKey(KeyCode.Alpha4))
-                setActiveRightCell(3);
+                currCell = 3;
         }
-    }
-
-    void setActiveRightCell(int n)
-    {
-        var oldItem = _inventory[currCell];
-        if (oldItem != null)
-        {
-            oldItem.Unselect();
-            moveItemToNewParent(oldItem, InventoryFolder);
-        }
-        currCell = n;
-        var newItem = _inventory[currCell];
-        if (newItem != null)
-        {
-            newItem.Select();
-            moveItemToNewParent(newItem, RightHand);
-        }
-        ui.setActiveRightCell(currCell);
     }
 
     void updateInv()
-    {
-        updateRightHandStots();
-        updateLeftHandStot();
-        setActiveRightCell(currCell);
-    }
-    void updateRightHandStots()
     {
         for (int i = 0; i < invSlots; i++)
         {
             ui.updateInventorySprite(i, _inventory[i] != null ? _inventory[i].GetSprite : null);
         }
-    }
-    void updateLeftHandStot()
-    {
-        //ui.updateLeftHandSprite(_leftHand != null ? _leftHand.GetSprite : null);
+        ui.setActiveCell(currCell);
+        //currCell = _cell; // ???
     }
 
     void inputItemControl()

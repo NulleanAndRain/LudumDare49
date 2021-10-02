@@ -8,7 +8,7 @@ public class TestItem : MonoBehaviour, Item
     public int MaxStackSize => _MaxStackSize;
 
     private int _currentCount = 0;
-    public int CurrentCount => _currentCount;
+    public int CurrentCount { get => _currentCount; set => _currentCount = value; }
 
     // Start is called before the first frame update
     void Start()
