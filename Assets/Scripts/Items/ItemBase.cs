@@ -43,12 +43,14 @@ public class ItemBase : MonoBehaviour
 
     public void Select()
     {
+        if (IsSelected) return;
         ActiveItemPart?.SetActive(true);
         IsSelected = true;
         onSelect();
     }
     public void Unselect()
     {
+        if (!IsSelected) return;
         ActiveItemPart?.SetActive(false);
         IsSelected = false;
         onUnselect();
