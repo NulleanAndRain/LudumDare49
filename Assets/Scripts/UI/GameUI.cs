@@ -48,7 +48,7 @@ public class GameUI : MonoBehaviour
         SetInitialState();
         PauseControl.Unpause();
         inventoryPositionY = inventoryGroup.transform.localPosition.y;
-        menuGruopPositionY = gameMenuGroup.transform.localPosition.y;
+        //menuGruopPositionY = gameMenuGroup.transform.localPosition.y;
         //InitHPBar();
     }
 

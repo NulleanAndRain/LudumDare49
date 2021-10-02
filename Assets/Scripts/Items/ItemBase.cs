@@ -70,6 +70,7 @@ public class ItemBase : MonoBehaviour
 
     private void EnableWorldspaceItem()
     {
+        transform.localScale = Vector3.one;
         rb.isKinematic = false;
         WorldspacePart.SetActive(true);
         pickUpTrigger.enabled = true;
