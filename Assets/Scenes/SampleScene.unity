@@ -1126,6 +1126,11 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 510285070}
+    - target: {fileID: 3167044373026888008, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 510285070}
     - target: {fileID: 6106154109336891547, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: m_AnchorMin.y
