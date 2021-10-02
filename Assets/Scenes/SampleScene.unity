@@ -1121,11 +1121,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_overrideHtmlColors
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2667433582381043586, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 510285070}
+    - target: {fileID: 2667433582381043586, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: _heigthAdding
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667433582381043586, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: _minHeigth
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 6106154109336891547, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: m_AnchorMin.y

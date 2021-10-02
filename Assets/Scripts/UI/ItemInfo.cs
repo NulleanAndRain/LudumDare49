@@ -12,7 +12,8 @@ public class ItemInfo : MonoBehaviour
 
     [SerializeField] private int _minWidth = 200;
     [SerializeField] private int _maxWidth = 350;
-    [SerializeField] private int _minHeigth = 120;
+    [SerializeField] private int _minHeigth = 40;
+    [SerializeField] private int _heigthAdding = 20;
 
     [SerializeField] private Camera _camera = null;
 
@@ -21,8 +22,9 @@ public class ItemInfo : MonoBehaviour
         get => HeaderText.text;
         set
         {
-            //CheckForFit();
             HeaderText.text = value;
+            if (_rect.gameObject.activeSelf)
+                CheckForFit();
         }
     }
 
@@ -31,8 +33,9 @@ public class ItemInfo : MonoBehaviour
         get => DescripitonText.text;
         set
         {
-            //CheckForFit();
             DescripitonText.text = value;
+            if (_rect.gameObject.activeSelf)
+                CheckForFit();
         }
 
     }
@@ -54,6 +57,7 @@ public class ItemInfo : MonoBehaviour
 
     public void ToggleOn()
     {
+        CheckForFit();
         _rect.gameObject.SetActive(true);
     }
     public void ToggleOff()
@@ -62,29 +66,33 @@ public class ItemInfo : MonoBehaviour
     }
 
     private void CheckForFit()
-    { // todo: fit on screen (?)
-        var r = _rect.position;
+    {
+        IEnumerator _coroutine()
+        {
+            var width = Mathf.Clamp(
+                Mathf.Max(
+                    HeaderText.renderedWidth,
+                    DescripitonText.renderedWidth),
+                _minWidth,
+                _maxWidth
+            );
 
-        var width = Mathf.Clamp(
-            Mathf.Max(
-                HeaderText.renderedWidth,
-                DescripitonText.renderedWidth),
-            _minWidth,
-            _maxWidth
-        );
+            var r = new Vector2(width, _minHeigth);
 
-        r.x += width;
+            _rect.sizeDelta = r;
 
-        _rect.right = r;
+            yield return new WaitForEndOfFrame();
 
-        var heigth = Mathf.Max(
-            _minHeigth,
-            _rectHeader.rect.height + DescripitonText.renderedHeight
-        );
+            var heigth = Mathf.Max(
+                _rectHeader.rect.height + _minHeigth,
+                _rectHeader.rect.height + DescripitonText.renderedHeight + _heigthAdding
+            );
 
-        r.y = heigth;
+            r.y = heigth;
 
-        //_rect.rect = r;
+            _rect.sizeDelta = r;
+        }
+        StartCoroutine(_coroutine());
     }
 
 

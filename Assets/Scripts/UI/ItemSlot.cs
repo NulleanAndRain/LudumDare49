@@ -85,6 +85,5 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler, IPoint
     {
         if (ContainingItem == null) return;
         ui.ItemInfoObj.ToggleOff();
-        Debug.Log("exit");
     }
 }
