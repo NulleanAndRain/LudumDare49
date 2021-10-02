@@ -12,8 +12,8 @@ public class GameUI : MonoBehaviour
     [Header("Inventory")]
     public GameObject gameMenuGroup;
     public GameObject inventoryGroup;
-    public GameObject leftArmItem;
-    public GameObject[] rightArmItem;
+    //public GameObject leftArmItem;
+    public GameObject[] mainItem;
 
     public Vector2 SelectedCellSize;
     public Vector2 defaultCellSize;
@@ -95,11 +95,11 @@ public class GameUI : MonoBehaviour
     /// </summary>
     /// <param name="n"></param>
     public void setActiveRightCell(int n) {
-        for (int i = 0; i < rightArmItem.Length; i++) {
+        for (int i = 0; i < mainItem.Length; i++) {
             if (i == n)
-                rightArmItem[n].GetComponent<RectTransform>().sizeDelta = SelectedCellSize;
+                mainItem[n].GetComponent<RectTransform>().sizeDelta = SelectedCellSize;
             else
-                rightArmItem[i].GetComponent<RectTransform>().sizeDelta = defaultCellSize;
+                mainItem[i].GetComponent<RectTransform>().sizeDelta = defaultCellSize;
         }
     }
 
@@ -200,12 +200,12 @@ public class GameUI : MonoBehaviour
     }
     
     public void updateInventorySprite (int n, Sprite sprite) {
-        updateSpriteOnCell(rightArmItem[n], sprite);
+        updateSpriteOnCell(mainItem[n], sprite);
     }
 
-    public void updateLeftHandSprite (Sprite sprite) {
-        updateSpriteOnCell(leftArmItem, sprite);
-    }
+    //public void updateLeftHandSprite (Sprite sprite) {
+    //    updateSpriteOnCell(leftArmItem, sprite);
+    //}
 
     private void updateSpriteOnCell (GameObject cell, Sprite sprite) {
         var img = cell.transform.GetChild(0).GetComponent<Image>();

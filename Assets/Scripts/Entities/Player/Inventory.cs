@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour {
     [Header("Inventory Objects Folders")]
     public Transform InventoryFolder;
     public Transform RightHand;
-    public Transform LeftHand;
+    //public Transform LeftHand;
 
     [Header("Inventory Slots")]
 
@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour {
         ui.onCellClick += cellOnClick;
 
         RightHand.DetachChildren();
-        LeftHand.DetachChildren();
+        //LeftHand.DetachChildren();
 
         void itemDrop (int n) {
             ItemBase item;
@@ -71,7 +71,7 @@ public class Inventory : MonoBehaviour {
                 _inventory[i1] = temp;
 
                 moveItemToNewParent(_inventory[i1], RightHand);
-                moveItemToNewParent(_leftHand, LeftHand);
+                //moveItemToNewParent(_leftHand, LeftHand);
             } else {
                 var temp = _inventory[i2];
                 _inventory[i2] = _inventory[i1];
@@ -147,7 +147,7 @@ public class Inventory : MonoBehaviour {
 
     void updateInv () {
         updateRightHandStots();
-        updateLeftHandStot();
+        //updateLeftHandStot();
         setActiveRightCell(currCell);
     }
     void updateRightHandStots() {
@@ -155,9 +155,9 @@ public class Inventory : MonoBehaviour {
             ui.updateInventorySprite(i, _inventory[i] != null? _inventory[i].GetSprite : null);
         }
     }
-    void updateLeftHandStot() {
-        ui.updateLeftHandSprite(_leftHand != null ? _leftHand.GetSprite : null);
-    }
+    //void updateLeftHandStot() {
+    //    ui.updateLeftHandSprite(_leftHand != null ? _leftHand.GetSprite : null);
+    //}
 
     void inputItemControl () {
         if (Input.GetKeyDown(KeyCode.Mouse0)) { // left click down
