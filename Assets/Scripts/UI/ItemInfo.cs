@@ -42,7 +42,7 @@ public class ItemInfo : MonoBehaviour
         ToggleOff();
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         if (!_rect.gameObject.activeSelf) return;
 

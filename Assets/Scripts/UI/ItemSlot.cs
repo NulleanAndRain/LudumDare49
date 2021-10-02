@@ -68,17 +68,23 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler, IPoint
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (ContainingItem == null) return;
+        if (ContainingItem == null)
+        {
+            ui.ItemInfoObj.ToggleOff(); 
+            return;
+        }
         var info = ui.ItemInfoObj;
 
         info.Header = ContainingItem.ItemName;
         info.Description = ContainingItem.ItemDescription;
-        info.Update();
+        info.FixedUpdate();
         info.ToggleOn();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (ContainingItem == null) return;
         ui.ItemInfoObj.ToggleOff();
+        Debug.Log("exit");
     }
 }

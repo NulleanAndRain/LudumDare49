@@ -1126,11 +1126,6 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 510285070}
-    - target: {fileID: 3167044373026888008, guid: 84b445da9122dbd4992aed5c106ddaeb,
-        type: 3}
-      propertyPath: _camera
-      value: 
-      objectReference: {fileID: 510285070}
     - target: {fileID: 6106154109336891547, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1161,11 +1156,6 @@ PrefabInstance:
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1514700342}
-    - target: {fileID: 6106154110361829441, guid: 84b445da9122dbd4992aed5c106ddaeb,
-        type: 3}
-      propertyPath: CameraUI
-      value: 
-      objectReference: {fileID: 510285070}
     - target: {fileID: 6106154110361829452, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: m_Camera
@@ -1275,11 +1265,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6106154110966367737, guid: 84b445da9122dbd4992aed5c106ddaeb,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.6039216
       objectReference: {fileID: 0}
     - target: {fileID: 7590091969216123194, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
