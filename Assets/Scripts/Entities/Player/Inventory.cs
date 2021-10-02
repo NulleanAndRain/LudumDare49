@@ -21,7 +21,6 @@ public class Inventory : MonoBehaviour
     {
         get => _cell; set
         {
-            _cell = value;
             var oldItem = _inventory[_cell];
             if (oldItem != null)
             {
@@ -29,13 +28,20 @@ public class Inventory : MonoBehaviour
                 moveItemToNewParent(oldItem, InventoryFolder);
             }
 
+            _cell = value;
+            if (_cell > invSlots - 1)
+                _cell = 0;
+            if (_cell < 0)
+                _cell = invSlots - 1;
+
             var newItem = _inventory[_cell];
             if (newItem != null)
             {
                 newItem.Select();
                 moveItemToNewParent(newItem, RightHand);
             }
-            ui.setActiveCell(_cell);
+
+            updateInv();
         }
     }
 
@@ -51,7 +57,9 @@ public class Inventory : MonoBehaviour
     public float dropDistance;
     public float DropVertOffset;
 
-    void Start()
+    public Item GetItem(int cell) => _inventory[cell].Item;
+
+    private void Start()
     {
         invSlots = _inventory.Length;
         pc = GetComponent<PlayerControl>();
@@ -106,7 +114,7 @@ public class Inventory : MonoBehaviour
         updateInv();
     }
 
-    void Update()
+    private void Update()
     {
         InputCellControll();
         inputItemControl();
@@ -129,20 +137,14 @@ public class Inventory : MonoBehaviour
             float mw = Input.GetAxisRaw("Mouse ScrollWheel");
             if (mw != 0)
             {
-                var cell = currCell;
                 if (mw < -0.1)
                 {
-                    cell++;
-                    if (cell > invSlots - 1)
-                        cell = 0;
+                    currCell++;
                 }
                 if (mw > 0.1)
                 {
-                    cell--;
-                    if (cell < 0)
-                        cell = invSlots - 1;
+                    currCell--;
                 }
-                ;
             }
         }
         // Numbers 

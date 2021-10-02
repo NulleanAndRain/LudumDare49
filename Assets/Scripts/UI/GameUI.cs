@@ -14,6 +14,7 @@ public class GameUI : MonoBehaviour
     public GameObject inventoryGroup;
     //public GameObject leftArmItem;
     public GameObject[] mainItem;
+    public Inventory PlayerInventory;
 
     public Vector2 SelectedCellSize;
     public Vector2 defaultCellSize;

@@ -8,15 +8,13 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
     [SerializeField] GameUI ui = null;
     public int CellNum;
     public bool selectableSlot;
+    public Item ContainingItem => ui.PlayerInventory.GetItem(CellNum);
 
     public GameObject itemHolderPrefab;
 
-	private void Start () {
-    }
-
-	public void OnPointerDown (PointerEventData eventData) {
+    public void OnPointerDown (PointerEventData eventData) {
         if (selectableSlot) ui.SelectCell(CellNum);
-	}
+    }
 
     public void createItemHolder () {
         var holder = Instantiate(itemHolderPrefab, transform);
@@ -24,7 +22,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
         holder.GetComponent<DragableItem>().init(canvas, ui);
     }
 
-	public void OnDrop (PointerEventData eventData) {
+    public void OnDrop (PointerEventData eventData) {
         OnPointerDown(eventData);
         // todo: finish this method
         if (eventData.pointerDrag != null) {
@@ -32,5 +30,24 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
                 item.SetSlotTarget(CellNum);
             }
         }
-	}
+    }
+
+    private void OnMouseOver()
+    {
+        if (ContainingItem == null) return;
+
+        var obj = ui.ItemInfoObj;
+        obj.Header = ContainingItem.ItemName;
+        obj.Description = ContainingItem.ItemDescription;
+
+        obj.transform.localPosition = Input.mousePosition;
+
+        obj.ToggleOn();
+
+    }
+
+    private void OnMouseExit()
+    {
+        ui.ItemInfoObj.ToggleOff();
+    }
 }

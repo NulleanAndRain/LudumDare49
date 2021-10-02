@@ -11,13 +11,16 @@ public class ItemBase : MonoBehaviour
     public Action onSelect = delegate { };
     public Action onUnselect = delegate { };
 
-    private SpriteRenderer _renderer;
-    private Rigidbody2D rb;
+    public bool IsSelected { get; private set; }
+
+    public Item Item;
     public Collider2D pickUpTrigger;
     public GameObject WorldspacePart;
     public GameObject ActiveItemPart;
 
-    public Item Item;
+    private SpriteRenderer _renderer;
+    private Rigidbody2D rb;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +44,13 @@ public class ItemBase : MonoBehaviour
     public void Select()
     {
         ActiveItemPart?.SetActive(true);
+        IsSelected = true;
         onSelect();
     }
     public void Unselect()
     {
         ActiveItemPart?.SetActive(false);
+        IsSelected = false;
         onUnselect();
     }
 
