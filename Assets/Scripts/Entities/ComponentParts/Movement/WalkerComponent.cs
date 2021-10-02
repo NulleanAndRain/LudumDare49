@@ -4,44 +4,61 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class WalkerComponent : MonoBehaviour {
-    public float speed;
-    public float jumpForce;
+    public float Speed;
+    public float MaxJumpSpeed;
+    public float JumpForce;
 
     private Rigidbody2D rb;
     private Vector2 _v;
+    private bool _isJumping;
 
-    public Vector2 moveVectorRaw { get; set; }
-    public bool canMove { get; set; } = true;
+    public Vector2 MoveVectorRaw { get; set; }
+    public bool CanMove { get; set; } = true;
 
     [Header("Ground check")]
     public GroundChecker Checker;
 
-
-    // onground check overlap areas
-    private Vector2 _overlap1 = Vector2.zero;
-    private Vector2 _overlap2 = Vector2.zero;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate () {
-        if (!canMove) return;
+        if (!CanMove) return;
 
-        moveVectorRaw = Vector2.ClampMagnitude(moveVectorRaw, 1);
-        if (rb.velocity.x < speed)
+        var velHorisontal = Mathf.Clamp(MoveVectorRaw.x, -1, 1);
+        if (rb.velocity.x < Speed)
         {
-            var speedLerp = Mathf.Clamp01(Mathf.InverseLerp(speed, 0, Mathf.Abs(rb.velocity.x)));
-            _v = moveVectorRaw * speed * speedLerp * speedLerp;
+            var speedLerp = Mathf.Clamp01(Mathf.InverseLerp(Speed, 0, Mathf.Abs(rb.velocity.x)));
+            _v = Vector2.right * velHorisontal * Speed * speedLerp * speedLerp;
 
             rb.AddForce(_v * rb.mass, ForceMode2D.Force);
         }
-	}
+
+        if (_isJumping)
+        {
+            var speedLerp = Mathf.Clamp01(Mathf.InverseLerp(MaxJumpSpeed, 0, rb.velocity.y));
+            if (rb.velocity.y >= MaxJumpSpeed)
+            {
+                _isJumping = false;
+            }
+            _v = Vector2.up * JumpForce * speedLerp * speedLerp * speedLerp;
+
+            rb.AddForce(_v * rb.mass, ForceMode2D.Force);
+        }
+    }
 
     public void Jump()
     {
-        if (IsOnGround)
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (!_isJumping && Checker.IsOnGround)
+        {
+            _isJumping = true;
+        }
+    }
+
+    public void StopJump()
+    {
+        _isJumping = false;
     }
 
     public bool IsOnGround => Checker.IsOnGround;

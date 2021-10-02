@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
         {
             _vel.x = 0;
             _vel.y = 0;
-            walker.moveVectorRaw = _vel;
+            walker.MoveVectorRaw = _vel;
             animator.SetBool("isWalking", false);
             animator.SetBool("isDowned", true);
             if (animNum < 4)
@@ -87,12 +87,16 @@ public class PlayerControl : MonoBehaviour
 
         animator.SetInteger("currDir", animNum);
 
-        walker.moveVectorRaw = _vel;
+        walker.MoveVectorRaw = _vel;
 
         if (Input.GetButtonDown("Jump"))
         {
             // todo: add animation
             walker.Jump();
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            walker.StopJump();
         }
     }
 

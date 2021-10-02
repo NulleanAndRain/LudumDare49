@@ -184,6 +184,18 @@ PrefabInstance:
       propertyPath: Checker
       value: 
       objectReference: {fileID: 1717067451}
+    - target: {fileID: 1116268222, guid: acecbdcf9aedf44499f6eadd064b5f07, type: 3}
+      propertyPath: Speed
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116268222, guid: acecbdcf9aedf44499f6eadd064b5f07, type: 3}
+      propertyPath: JumpForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116268222, guid: acecbdcf9aedf44499f6eadd064b5f07, type: 3}
+      propertyPath: MaxJumpSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7036365330330470452, guid: acecbdcf9aedf44499f6eadd064b5f07,
         type: 3}
       propertyPath: m_LocalPosition.x
