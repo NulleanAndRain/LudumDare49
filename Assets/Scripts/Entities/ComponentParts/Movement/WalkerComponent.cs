@@ -7,10 +7,12 @@ public class WalkerComponent : MonoBehaviour {
     public float Speed;
     public float MaxJumpSpeed;
     public float JumpForce;
+    public float JumpUpTime;
 
     private Rigidbody2D rb;
     private Vector2 _v;
     private bool _isJumping;
+    private float _jumpStartTime;
 
     public Vector2 MoveVectorRaw { get; set; }
     public bool CanMove { get; set; } = true;
@@ -38,11 +40,11 @@ public class WalkerComponent : MonoBehaviour {
         if (_isJumping)
         {
             var speedLerp = Mathf.Clamp01(Mathf.InverseLerp(MaxJumpSpeed, 0, rb.velocity.y));
-            if (rb.velocity.y >= MaxJumpSpeed)
+            if (Time.time >= _jumpStartTime + JumpUpTime)
             {
                 _isJumping = false;
             }
-            _v = Vector2.up * JumpForce * speedLerp * speedLerp * speedLerp;
+            _v = Vector2.up * JumpForce * speedLerp * speedLerp;
 
             rb.AddForce(_v * rb.mass, ForceMode2D.Force);
         }
@@ -53,6 +55,7 @@ public class WalkerComponent : MonoBehaviour {
         if (!_isJumping && Checker.IsOnGround)
         {
             _isJumping = true;
+            _jumpStartTime = Time.time;
         }
     }
 
