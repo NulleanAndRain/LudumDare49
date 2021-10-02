@@ -70,14 +70,7 @@ public class PlayerControl : MonoBehaviour
 
         float _magn = _vel.magnitude;
 
-        if (_magn > 1e-3)
-        {
-            animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
-        }
+        animator.SetBool("isWalking", _magn > 1e-3);
 
         //animNum = Mathf.FloorToInt((viewAngle + 22.5f) / 45) % 8;
         if (_vel.x > 1e-3)
@@ -92,7 +85,7 @@ public class PlayerControl : MonoBehaviour
         walker.moveVectorRaw = _vel;
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            gameUI?.SetPause();
+            PauseControl.TogglePause();
     }
 
 }

@@ -1,25 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
 public class PauseControl : MonoBehaviour {
-    // added
-    public static bool isPaused { get; private set; } = false;
-    // если надо сделать поле, которое надо получать извне, но нужно менять только внутри класса, пишешь такую хуиту
+    public static bool isPaused => Time.timeScale == 0;
+    public static event Action onPause = delegate { };
+    public static event Action onUnpause = delegate { };
 
-    public static void Pause() { // renamed
-        Time.timeScale = 0; //Мировое время приравневаем к нулю, т.е. останавливаем
-        isPaused = true;
+    public static void Pause() {
+        Time.timeScale = 0;
+        onPause();
     }
 
-    public static void Unpause() { // renamed
-        Time.timeScale = 1; //Возвращаем прежнее значение мирового времени. 1 - нормальное течение
-        isPaused = false;
+    public static void Unpause() {
+        Time.timeScale = 1;
+        onUnpause();
     }
 
-    // added
-    public static void togglePause () {
+    public static void TogglePause () {
         if (isPaused) {
             Unpause();
         } else {

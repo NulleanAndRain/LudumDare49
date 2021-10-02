@@ -6,6 +6,7 @@ using UnityEngine;
 public class WalkerComponent : MonoBehaviour {
     public float speed;
 
+
     private Rigidbody2D rb;
 
     public Vector2 moveVectorRaw { get; set; }
@@ -17,9 +18,7 @@ public class WalkerComponent : MonoBehaviour {
 
     Vector2 _v;
     private void FixedUpdate () {
-        if (!canMove) {
-            return;
-        }
+        if (!canMove) return;
 
         moveVectorRaw = Vector2.ClampMagnitude(moveVectorRaw, 1);
         if (rb.velocity.x < speed)
