@@ -1154,6 +1154,11 @@ PrefabInstance:
       objectReference: {fileID: 6106154110361829441}
     - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
         type: 3}
+      propertyPath: CellNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
+        type: 3}
       propertyPath: canvas
       value: 
       objectReference: {fileID: 6106154110361829452}
@@ -1162,11 +1167,6 @@ PrefabInstance:
       propertyPath: ui
       value: 
       objectReference: {fileID: 6106154110361829441}
-    - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
-        type: 3}
-      propertyPath: CellNum
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cd6b6ad2771fed43beaf8933131fd63, type: 3}
 --- !u!224 &7590091969216123194 stripped
@@ -1316,6 +1316,11 @@ PrefabInstance:
       objectReference: {fileID: 6106154110361829441}
     - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
         type: 3}
+      propertyPath: CellNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
+        type: 3}
       propertyPath: canvas
       value: 
       objectReference: {fileID: 6106154110361829452}
@@ -1324,11 +1329,6 @@ PrefabInstance:
       propertyPath: ui
       value: 
       objectReference: {fileID: 6106154110361829441}
-    - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
-        type: 3}
-      propertyPath: CellNum
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cd6b6ad2771fed43beaf8933131fd63, type: 3}
 --- !u!224 &8064675174049664808 stripped
@@ -1478,6 +1478,11 @@ PrefabInstance:
       objectReference: {fileID: 6106154110361829441}
     - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
         type: 3}
+      propertyPath: CellNum
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
+        type: 3}
       propertyPath: canvas
       value: 
       objectReference: {fileID: 6106154110361829452}
@@ -1486,11 +1491,6 @@ PrefabInstance:
       propertyPath: ui
       value: 
       objectReference: {fileID: 6106154110361829441}
-    - target: {fileID: 2842708092818183743, guid: 7cd6b6ad2771fed43beaf8933131fd63,
-        type: 3}
-      propertyPath: CellNum
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cd6b6ad2771fed43beaf8933131fd63, type: 3}
 --- !u!224 &7918333555731456270 stripped
