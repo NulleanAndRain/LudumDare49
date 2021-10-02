@@ -35,6 +35,7 @@ public class GameUI : MonoBehaviour
     private Image hp_bar_heal_img;
     public float hpTime;
 
+    public Camera CameraUI;
 
     //[Header("Pause")]
     //public GameObject pausePanel;

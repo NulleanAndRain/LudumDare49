@@ -20,7 +20,7 @@ public class ItemInfo : MonoBehaviour
         get => HeaderText.text;
         set
         {
-            CheckForFit();
+            //CheckForFit();
             HeaderText.text = value;
         }
     }
@@ -30,7 +30,7 @@ public class ItemInfo : MonoBehaviour
         get => DescripitonText.text;
         set
         {
-            CheckForFit();
+            //CheckForFit();
             DescripitonText.text = value;
         }
 
