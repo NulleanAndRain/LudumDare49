@@ -121,12 +121,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &401113002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6106154110966367743, guid: 84b445da9122dbd4992aed5c106ddaeb,
+--- !u!114 &484174733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6106154110361829441, guid: 84b445da9122dbd4992aed5c106ddaeb,
     type: 3}
   m_PrefabInstance: {fileID: 1812829603}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587b92c2091df1d409bd24f9b13d09b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &594447203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,6 +502,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6106154109774938359, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6106154110361829440, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: m_Name
@@ -505,22 +516,22 @@ PrefabInstance:
         type: 3}
       propertyPath: gameMenuGroup
       value: 
-      objectReference: {fileID: 401113002}
+      objectReference: {fileID: 0}
     - target: {fileID: 6106154110361829441, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: hp_bar
       value: 
-      objectReference: {fileID: 401113002}
+      objectReference: {fileID: 0}
     - target: {fileID: 6106154110361829441, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: hp_bar_behind
       value: 
-      objectReference: {fileID: 401113002}
+      objectReference: {fileID: 0}
     - target: {fileID: 6106154110361829441, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: hp_bar_heal
       value: 
-      objectReference: {fileID: 401113002}
+      objectReference: {fileID: 0}
     - target: {fileID: 6106154110361829453, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -645,6 +656,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106154110576408144, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106154110576408144, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106154110576408144, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 484174733}
+    - target: {fileID: 6106154110576408144, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowPauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106154110576408144, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106154110576408144, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6106154110605345585, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}

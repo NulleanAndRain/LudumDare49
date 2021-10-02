@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour {
         walker = GetComponent<WalkerComponent>();
 
         void updateHpBar (float currHP, float maxHP) {
-            gameUI.updateHpBar(currHP/maxHP);
+            //gameUI.updateHpBar(currHP/maxHP);
         }
 
         health.onHealthUpdate += updateHpBar;
