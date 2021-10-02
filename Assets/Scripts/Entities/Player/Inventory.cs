@@ -238,6 +238,14 @@ public class Inventory : MonoBehaviour
                 _inventory[i] = item;
                 moveItemToNewParent(item, InventoryFolder);
                 updateInv();
+                item.Item.OnItemAmountChange += updateInv;
+                
+                void remove()
+                {
+                    item.Item.OnItemAmountChange += updateInv;
+                    updateInv();
+                }
+                item.Item.OnItemEnded += remove;
                 return true;
             }
         }

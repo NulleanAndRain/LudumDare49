@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,12 +11,25 @@ public abstract class Item : MonoBehaviour
     [SerializeField] private int _currentCount = 1;
     public int CurrentCount
     {
-        get => _currentCount; protected set
+        get => _currentCount; 
+        protected set
         {
-            if (value > 0) _currentCount = value;
-            else Destroy(gameObject);
+            if (value > 0)
+            {
+                if (_currentCount != value) 
+                    OnItemAmountChange();
+                _currentCount = value;
+            }
+            else
+            {
+                OnItemEnded();
+                Destroy(gameObject);
+            }
         }
     }
+
+    public event Action OnItemAmountChange = delegate { };
+    public event Action OnItemEnded = delegate { };
 
     /// <summary>
     /// Add stack of items to this one
