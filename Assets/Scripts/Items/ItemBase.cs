@@ -15,6 +15,7 @@ public class ItemBase : MonoBehaviour
     private Rigidbody2D rb;
     public Collider2D pickUpTrigger;
     public GameObject WorldspacePart;
+    public GameObject ActiveItemPart;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +37,12 @@ public class ItemBase : MonoBehaviour
 
     public void Select()
     {
+        ActiveItemPart?.SetActive(true);
         onSelect();
     }
     public void Unselect()
     {
+        ActiveItemPart?.SetActive(false);
         onUnselect();
     }
 
