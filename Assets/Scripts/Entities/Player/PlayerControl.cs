@@ -82,8 +82,8 @@ public class PlayerControl : MonoBehaviour
             animNum = 2;
         else if (_vel.x < -1e-3)
             animNum = 6;
-        else
-            animNum = 0;
+        //else
+        //    animNum = 0;
 
         animator.SetInteger("currDir", animNum);
 

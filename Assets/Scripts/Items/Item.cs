@@ -5,4 +5,5 @@ using UnityEngine;
 public interface Item
 {
     int MaxStackSize { get; }
+    int CurrentCount { get; }
 }

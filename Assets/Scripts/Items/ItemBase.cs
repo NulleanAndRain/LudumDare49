@@ -59,8 +59,6 @@ public class ItemBase : MonoBehaviour
         }
     }
 
-
-
     public void HandleDrop()
     {
         EnableWorldspaceItem();

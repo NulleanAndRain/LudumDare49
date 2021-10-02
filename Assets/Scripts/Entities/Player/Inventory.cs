@@ -27,6 +27,7 @@ public class Inventory : MonoBehaviour
     [Header("Other")]
     private PlayerControl pc;
     public float dropDistance;
+    public float DropVertOffset;
 
     void Start()
     {
@@ -49,9 +50,20 @@ public class Inventory : MonoBehaviour
 
             item.transform.parent = null;
 
-            Vector2 newPos = Quaternion.Euler(0, 0, pc.animNum * 45) * Vector2.down;
+            // todo: item droping
+            var dir = Vector2.ClampMagnitude(
+                Camera.main.ScreenToWorldPoint(Input.mousePosition)
+                - transform.position, dropDistance);
 
-            item.transform.position = (Vector2)center.position + newPos;
+            var hit = Physics2D.Raycast(transform.position, dir, dropDistance);
+            if (hit.collider != null)
+            {
+                item.transform.position = hit.point + Vector2.up * DropVertOffset;
+            }
+            else
+            {
+                item.transform.position = (Vector2)center.position + dir;
+            }
             item.HandleDrop();
 
             updateInv();
