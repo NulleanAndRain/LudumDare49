@@ -44,9 +44,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011925592, y: -0.484165}
-  m_Size: {x: 0.3, y: 0.225}
-  m_Direction: 1
+  m_Offset: {x: -0.016699553, y: -0.05928436}
+  m_Size: {x: 0.25046206, y: 0.8997182}
+  m_Direction: 0
 --- !u!1 &159596009
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1fa64cdc080de47ab17c6f5985660e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameUI: {fileID: 0}
   viewPos: {fileID: 7036365329883173489}
   isFacingToCursor: 0
 --- !u!210 &5926971654602408293
@@ -739,12 +740,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7036365330330470455}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4d146c8ed28bc943830e799b48fe60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 0}
+  center: {fileID: 0}
   InventoryFolder: {fileID: 159596010}
   RightHand: {fileID: 7036365330640289206}
   LeftHand: {fileID: 5394702130460501163}
@@ -757,6 +759,7 @@ MonoBehaviour:
   activeMouseWheel: 1
   activeNumbersCell: 1
   isCellClickable: 1
+  dropDistance: 0
 --- !u!1 &7036365330640289207
 GameObject:
   m_ObjectHideFlags: 0

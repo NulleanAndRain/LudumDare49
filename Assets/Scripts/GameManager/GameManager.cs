@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	[SerializeField]
-	public Vector2 WorldAngleSize;
 	public float respawnTime;
 
 	private static GameManager _instance;
@@ -23,7 +22,4 @@ public class GameManager : MonoBehaviour
 		QualitySettings.vSyncCount = 0;
 	}
 
-	public static Vector2 normalizeVec2 (Vector2 vec) {
-		return vec * _instance.WorldAngleSize;
-	}
 }

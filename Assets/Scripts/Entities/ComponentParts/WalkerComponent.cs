@@ -22,9 +22,11 @@ public class WalkerComponent : MonoBehaviour {
         }
 
         moveVectorRaw = Vector2.ClampMagnitude(moveVectorRaw, 1);
-        float _m = moveVectorRaw.magnitude;
-		_v = moveVectorRaw  * speed;
+        if (rb.velocity.x < speed)
+        {
+            _v = moveVectorRaw * speed;
 
-		rb.AddForce(GameManager.normalizeVec2(_v) * rb.mass, ForceMode2D.Force);
+            rb.AddForce(_v * rb.mass, ForceMode2D.Force);
+        }
 	}
 }

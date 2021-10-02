@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(WalkerComponent), typeof(Health))]
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : MonoBehaviour
+{
 
-    [System.NonSerialized] GameUI gameUI = null; //added
+    public GameUI gameUI = null; //added
 
     private Vector2 _vel;
 
@@ -18,34 +20,36 @@ public class PlayerControl : MonoBehaviour {
     Vector3 _ls = Vector3.one;
 
     public bool isFacingToCursor;
-    void Start() {
-        gameUI = GameObject.Find("UI_System").GetComponent<GameUI>(); //added
-        //лучше сделать через синглтон GameUI, но поебать
-
+    void Start()
+    {
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<Health>();
         walker = GetComponent<WalkerComponent>();
 
-        void updateHpBar (float currHP, float maxHP) {
-            gameUI.updateHpBar(currHP/maxHP);
+        void updateHpBar(float currHP, float maxHP)
+        {
+            gameUI.updateHpBar(currHP / maxHP);
         }
 
         health.onHealthUpdate += updateHpBar;
 
-        void revive () {
+        void revive()
+        {
             _vel.x = 0;
             _vel.y = 0;
             walker.moveVectorRaw = _vel;
             animator.SetBool("isWalking", false);
             animator.SetBool("isDowned", true);
-            if (animNum < 4) {
+            if (animNum < 4)
+            {
                 _ls.x *= -1;
                 transform.localScale = _ls;
             }
             StartCoroutine(waitForRevive());
         }
 
-        IEnumerator waitForRevive() {
+        IEnumerator waitForRevive()
+        {
             yield return new WaitForSeconds(GameManager.RespawnTime);
             animator.SetBool("isDowned", false);
             health.Revive();
@@ -57,39 +61,38 @@ public class PlayerControl : MonoBehaviour {
         health.onDowned += revive;
     }
 
-    private Vector2 visionVec;
-    public float viewAngle { get; private set; }
     public int animNum { get; private set; }
-    void Update() {
-        if (health.isDowned || PauseControl.isPaused) {
-            return;
-        }
+    void Update()
+    {
+        if (health.isDowned || PauseControl.isPaused) return;
         _vel.x = Input.GetAxis("Horizontal");
         _vel.y = Input.GetAxis("Vertical");
 
-        visionVec = Camera.main.ScreenToWorldPoint(Input.mousePosition) - viewPos.position;
-
         float _magn = _vel.magnitude;
 
-        if (isFacingToCursor) {
-            viewAngle = Vector2.SignedAngle(Vector2.up, visionVec) + 180f;
-        } else if (_magn > 1e-3) {
-            viewAngle = Vector2.SignedAngle(Vector2.up, _vel) + 180f;
-        }
-        if (_magn > 1e-3) {
+        if (_magn > 1e-3)
+        {
             animator.SetBool("isWalking", true);
-        } else {
+        }
+        else
+        {
             animator.SetBool("isWalking", false);
         }
 
-        animNum = Mathf.FloorToInt((viewAngle + 22.5f) / 45) % 8;
+        //animNum = Mathf.FloorToInt((viewAngle + 22.5f) / 45) % 8;
+        if (_vel.x > 1e-3)
+            animNum = 2;
+        else if (_vel.x < -1e-3)
+            animNum = 6;
+        else
+            animNum = 0;
 
         animator.SetInteger("currDir", animNum);
 
         walker.moveVectorRaw = _vel;
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            gameUI.SetPause();
+            gameUI?.SetPause();
     }
 
 }
