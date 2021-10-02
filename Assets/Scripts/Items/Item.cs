@@ -2,8 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Item
+public abstract class Item : MonoBehaviour
 {
-    int MaxStackSize { get; }
-    int CurrentCount { get; set; }
+    [SerializeField] private int _maxStackSize = 1;
+    public int MaxStackSize => _maxStackSize;
+
+    [SerializeField] private int _currentCount = 1;
+    public int CurrentCount
+    {
+        get => _currentCount; protected set
+        {
+            if (value > 0) _currentCount = value;
+            else Destroy(gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Add stack of items to this one
+    /// </summary>
+    /// <param name="count">Adding stack</param>
+    /// <returns>True if items are added and none are left in the stack
+    /// False if no items added or more than 0 left in stack
+    /// </returns>
+    public virtual bool TryAddItems(Item item)
+    {
+        if (item.GetType() != this.GetType()) return false;
+
+        CurrentCount += item.CurrentCount;
+        var rest = CurrentCount - MaxStackSize;
+        item.CurrentCount = rest;
+        if (rest > 0)
+        {
+            CurrentCount = MaxStackSize;
+            return false;
+        } 
+
+        return true;
+    }
 }

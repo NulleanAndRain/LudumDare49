@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
+[RequireComponent(typeof(SpriteRenderer), typeof(Collider2D), typeof(Item))]
 public class ItemBase : MonoBehaviour
 {
     public Action onClickDown = delegate { };
@@ -24,6 +24,7 @@ public class ItemBase : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        Item = GetComponent<Item>();
     }
 
     public Sprite GetSprite => _renderer.sprite;

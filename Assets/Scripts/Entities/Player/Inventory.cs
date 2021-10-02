@@ -94,7 +94,7 @@ public class Inventory : MonoBehaviour
         ui.onItemDrop += itemDrop;
 
         void itemSwap(int i1, int i2)
-        { 
+        {
             var temp = _inventory[i2];
             _inventory[i2] = _inventory[i1];
             _inventory[i1] = temp;
@@ -210,16 +210,25 @@ public class Inventory : MonoBehaviour
     public bool AddItem(ItemBase item)
     {
         int i = 0;
-        while (_inventory[i] != null && i < invSlots)
+        while (_inventory[i] != null &&
+            i < invSlots)
         {
+            if (_inventory[i].Item.TryAddItems(item.Item))
+            {
+                return true;
+            }
             i++;
         }
+
         if (i < invSlots)
         {
-            _inventory[i] = item;
-            moveItemToNewParent(item, InventoryFolder);
-            updateInv();
-            return true;
+            if (_inventory[i] == null)
+            {
+                _inventory[i] = item;
+                moveItemToNewParent(item, InventoryFolder);
+                updateInv();
+                return true;
+            }
         }
         return false;
     }
