@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
     public float dropDistance;
     public float DropVertOffset;
 
-    public Item GetItem(int cell) => _inventory[cell].Item;
+    public Item GetItem(int cell) => _inventory[cell]?.Item;
 
     private void Start()
     {

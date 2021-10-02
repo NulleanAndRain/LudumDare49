@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
+public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+{
     public int CellNum;
     public bool selectableSlot;
     public Image Sprite;
@@ -29,27 +30,51 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
     [SerializeField] private GameUI ui = null;
     [SerializeField] private TMPro.TMP_Text AmountText = null;
 
+    private bool _mouseIsOver = false;
+
     private void Awake()
     {
         Rect = GetComponent<RectTransform>();
     }
 
-    public void OnPointerDown (PointerEventData eventData) {
+    private void Update()
+    {
+        var info = ui.ItemInfoObj;
+        if (!_mouseIsOver || ContainingItem == null)
+        {
+            info.ToggleOff();
+            return;
+        }
+
+        info.Header = ContainingItem.ItemName;
+        info.Description = ContainingItem.ItemDescription;
+
+        info.transform.localPosition = Input.mousePosition;
+        info.ToggleOn();
+
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
         if (selectableSlot) ui.SelectCell(CellNum);
     }
 
-    public void createItemHolder () {
+    public void createItemHolder()
+    {
         var holder = Instantiate(ItemHolderPrefab, transform);
         holder.SetActive(false);
         holder.GetComponent<DragableItem>().init(canvas, ui);
         Sprite = holder.GetComponent<Image>();
     }
 
-    public void OnDrop (PointerEventData eventData) {
+    public void OnDrop(PointerEventData eventData)
+    {
         OnPointerDown(eventData);
         // todo: finish this method
-        if (eventData.pointerDrag != null) {
-            if (eventData.pointerDrag.TryGetComponent(out DragableItem item)) {
+        if (eventData.pointerDrag != null)
+        {
+            if (eventData.pointerDrag.TryGetComponent(out DragableItem item))
+            {
                 item.SetSlotTarget(CellNum);
             }
         }
@@ -60,24 +85,13 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IDropHandler {
         Sprite.gameObject.SetActive(toggle);
     }
 
-    private void OnMouseOver()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (ContainingItem == null) return;
-
-        Debug.Log("hover");
-
-        var obj = ui.ItemInfoObj;
-        obj.Header = ContainingItem.ItemName;
-        obj.Description = ContainingItem.ItemDescription;
-
-        obj.transform.localPosition = Input.mousePosition;
-
-        obj.ToggleOn();
-
+        _mouseIsOver = true;
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        ui.ItemInfoObj.ToggleOff();
+        _mouseIsOver = false;
     }
 }
