@@ -185,29 +185,29 @@ public class Inventory : MonoBehaviour
         { // left click down
             if (_inventory[currCell] != null)
             {
-                _inventory[currCell].ClickDown();
+                _inventory[currCell].ClickDownMain();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        { // right click down
-            if (_inventory[currCell] != null)
-            {
-                _inventory[currCell].ClickDown();
-            }
-        }
-
         if (Input.GetKeyUp(KeyCode.Mouse0))
         { // left click up
             if (_inventory[currCell] != null)
             {
-                _inventory[currCell].ClickDown();
+                _inventory[currCell].ClickDownMain();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        { // right click down
+            if (_inventory[currCell] != null)
+            {
+                _inventory[currCell].ClickDownSecondary();
             }
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         { // right click up
             if (_inventory[currCell] != null)
             {
-                _inventory[currCell].ClickDown();
+                _inventory[currCell].ClickDownSecondary();
             }
         }
     }
@@ -243,6 +243,7 @@ public class Inventory : MonoBehaviour
                 void remove()
                 {
                     item.Item.OnItemAmountChange += updateInv;
+                    _inventory[i] = null;
                     updateInv();
                 }
                 item.Item.OnItemEnded += remove;

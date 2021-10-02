@@ -5,11 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D), typeof(Item))]
 public class ItemBase : MonoBehaviour
 {
-    public Action onClickDown = delegate { };
-    public Action onClickUp = delegate { };
+    public event Action onClickDownMain = delegate { };
+    public event Action onClickUpMain = delegate { };
 
-    public Action onSelect = delegate { };
-    public Action onUnselect = delegate { };
+    public event Action onClickDownSecondary = delegate { };
+    public event Action onClickUpSecondary = delegate { };
+
+    public event Action onSelect = delegate { };
+    public event Action onUnselect = delegate { };
 
     public bool IsSelected { get; private set; }
 
@@ -32,13 +35,22 @@ public class ItemBase : MonoBehaviour
 
     public Sprite GetSprite => _renderer.sprite;
 
-    public void ClickDown()
+    public void ClickDownMain()
     {
-        onClickDown();
+        onClickDownMain();
     }
-    public void ClickUp()
+    public void ClickUpMain()
     {
-        onClickUp();
+        onClickUpMain();
+    }
+
+    public void ClickDownSecondary()
+    {
+        onClickDownSecondary();
+    }
+    public void ClickUpSecondary()
+    {
+        onClickUpSecondary();
     }
 
     public void Select()

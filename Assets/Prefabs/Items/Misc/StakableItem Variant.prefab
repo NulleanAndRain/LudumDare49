@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxStackSize: 20
   _currentCount: 1
+  _itemName: Test Item
+  _itemDescription: Lorem Ipsum
+  ParticlePrefab: {fileID: 8634901305734946369, guid: 449ac147138c4304d99be5c8784fd90b,
+    type: 3}
+  Base: {fileID: 1513694260043935737}
 --- !u!1001 &3886504065379963029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,3 +99,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3886504065379963029}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513694260043935737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2372862863361638252, guid: a3f073993ac4bef4da329856418eed8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3886504065379963029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513694260043935718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 365394b8e4197cc4f9a583f050073470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

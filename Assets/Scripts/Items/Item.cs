@@ -11,19 +11,21 @@ public abstract class Item : MonoBehaviour
     [SerializeField] private int _currentCount = 1;
     public int CurrentCount
     {
-        get => _currentCount; 
+        get => _currentCount;
         protected set
         {
             if (value > 0)
             {
-                if (_currentCount != value) 
+                if (_currentCount != value)
+                {
+                    _currentCount = value;
                     OnItemAmountChange();
-                _currentCount = value;
+                }
             }
             else
             {
-                OnItemEnded();
                 Destroy(gameObject);
+                OnItemEnded();
             }
         }
     }
