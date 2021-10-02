@@ -21,25 +21,11 @@ public class Inventory : MonoBehaviour
     {
         get => _cell; set
         {
-            var oldItem = _inventory[_cell];
-            if (oldItem != null)
-            {
-                oldItem.Unselect();
-                moveItemToNewParent(oldItem, InventoryFolder);
-            }
-
             _cell = value;
             if (_cell > invSlots - 1)
                 _cell = 0;
             if (_cell < 0)
                 _cell = invSlots - 1;
-
-            var newItem = _inventory[_cell];
-            if (newItem != null)
-            {
-                newItem.Select();
-                moveItemToNewParent(newItem, RightHand);
-            }
 
             updateInv();
         }
@@ -165,8 +151,23 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < invSlots; i++)
         {
-            ui.updateInventorySprite(i, _inventory[i] != null ? _inventory[i].GetSprite : null);
+            var item = _inventory[i];
+            ui.updateInventorySprite(i, item != null ? item.GetSprite : null);
+
+            if (item != null)
+            {
+                if (i != currCell)
+                {
+                    item.Unselect();
+                    moveItemToNewParent(item, InventoryFolder);
+                } else
+                {
+                    item.Select();
+                    moveItemToNewParent(item, RightHand);
+                }
+            }
         }
+    
         ui.setActiveCell(currCell);
         //currCell = _cell; // ???
     }
