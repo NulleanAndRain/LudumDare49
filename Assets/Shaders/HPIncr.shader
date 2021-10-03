@@ -12,7 +12,9 @@ Shader "Universal Render Pipeline/2D/HPIncr"
 
         _botEdge ("Bottom Edge", Range(0, 1)) = 0
         _topEdge ("Top Edge", Range(0, 1)) = 0
-
+        
+        _LvlMax("Top waterline", Range(0, 1)) = 1
+        _LvlMin("Bottom waterline", Range(0, 1)) = 0
     }
     
     HLSLINCLUDE
@@ -61,6 +63,9 @@ Shader "Universal Render Pipeline/2D/HPIncr"
 
             float4 _Color;
             float4 _ColorLight;
+
+            float _LvlMax;
+            float _LvlMin;
             
             // vertex shader
             // modifies and passes vertices info to fragment shader
@@ -83,8 +88,12 @@ Shader "Universal Render Pipeline/2D/HPIncr"
             // returns color of each pixel in figure
             float4 frag(Varyings v) : SV_Target {
                 float h = _waveHeight * (noise1D(v.uv.x + _Time.y * _waveSpeed)*0.5 - 0.5);
-                float h1 =  v.uv.y + h;
-                if (h1 > _topEdge || h1 < _botEdge) return (float4)0;
+                float h1 = v.uv.y + h;
+                float _t = lerp(_LvlMin, _LvlMax, _topEdge) + _LvlMin;
+                float _b = lerp(_LvlMin, _LvlMax, _botEdge) + _LvlMin;
+
+
+                if (h1 > _t || h1 < _b) return (float4)0;
                 
                 half4 mask = (half4)1;
                 mask.a *= SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, v.uv).a;

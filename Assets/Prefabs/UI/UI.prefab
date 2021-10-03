@@ -157,7 +157,7 @@ MonoBehaviour:
   _rectHeader: {fileID: 826298239515864674}
   _minWidth: 200
   _maxWidth: 350
-  _minHeigth: 120
+  _minHeigth: 40
   _heigthAdding: 20
   _camera: {fileID: 0}
 --- !u!225 &1279731295
@@ -825,7 +825,7 @@ MonoBehaviour:
   hp_bar: {fileID: 7051186904794808833}
   hp_bar_behind: {fileID: 7564625949943168029}
   hp_bar_heal: {fileID: 6797213150477737114}
-  hpTime: 0
+  hpTime: 0.5
 --- !u!1 &6106154110576408148
 GameObject:
   m_ObjectHideFlags: 0

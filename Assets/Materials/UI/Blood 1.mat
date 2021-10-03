@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Blood 1
-  m_Shader: {fileID: 4800000, guid: 13e363697bb640f49ba8775fcdf9b9b5, type: 3}
+  m_Shader: {fileID: 4800000, guid: e64379903f16b594081f113bb262c4e9, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -36,11 +36,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Aspect: 2
     - _Col1L: 0.2
     - _Col2L: 0.6
     - _Col3L: 0.75
     - _ColorMask: 15
     - _EnableExternalAlpha: 0
+    - _LvlMax: 0.9
+    - _LvlMin: 0
     - _PixelCount: 16
     - _Stencil: 0
     - _StencilComp: 8

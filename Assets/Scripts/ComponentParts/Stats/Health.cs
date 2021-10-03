@@ -98,7 +98,11 @@ public class Health : MonoBehaviour
         rb.AddForce(_lastDamageDir, ForceMode2D.Impulse);
 
         if (ParticlePrefab != null) {
-            StartCoroutine(DamageParticles(Quaternion.Euler(0, 0, angle)));
+            Instantiate(
+                ParticlePrefab, 
+                transform.position + _particlesPos,
+                Quaternion.Euler(0, 0, angle)
+            );
         }
         onGetDamage(kbForce, angle);
 
@@ -115,6 +119,8 @@ public class Health : MonoBehaviour
         onHealthUpdate(currHealth, MaxHealth);
     }
 
+    public void GetDamage(float amount) => GetDamage(amount, transform.position, 0);
+
     public void Heal(float amount) {
         if (amount <= 0) return;
         currHealth += amount;
@@ -124,12 +130,6 @@ public class Health : MonoBehaviour
         }
 
         onHealthUpdate(currHealth, MaxHealth);
-    }
-
-    private IEnumerator DamageParticles(Quaternion direction) {
-        var _instance = Instantiate(ParticlePrefab, transform.position + _particlesPos, direction);
-        yield return new WaitForSeconds(ParticlePrefab.main.duration);
-        Destroy(_instance.gameObject);
     }
 
     public void Revive(float percent = 1) {

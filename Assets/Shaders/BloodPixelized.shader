@@ -13,6 +13,9 @@
         
         _PixelCount("Pixel Count", Range(1, 1024)) = 16
         _Aspect("Height to width aspect rate", Float) = 2
+
+        _LvlMax("Top waterline", Range(0, 1)) = 1
+        _LvlMin("Bottom waterline", Range(0, 1)) = 0
     }
 
     // нить жизни простых смертных обрывается здесь
@@ -65,6 +68,9 @@
 
             int _PixelCount;
             Float _Aspect;
+
+            float _LvlMax;
+            float _LvlMin;
             
             // gradient noise
             float2 unity_gradientNoise_dir(float2 p) {
@@ -171,9 +177,12 @@
             float4 frag(Varyings v) : SV_Target {
                 float2 uv = pixelize(v.uv, _PixelCount);
                 float h = v.uv.y + _waveHeight * (noise1D(v.uv.x + _Time.y * _waveSpeed)*0.5 - 0.5);
-
-                if (h > _level) return (float4)0;
                 
+                float _l = lerp (_LvlMin, _LvlMax, _level) + _LvlMin;
+
+                if (h > _l) return (float4)0;
+                if (h < _LvlMin) return (float4)0;
+
                 half4 mask = (half4)1;
                 mask.a *= SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, v.uv).a;
 

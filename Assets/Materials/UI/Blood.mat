@@ -42,6 +42,8 @@ Material:
     - _Col3L: 0.75
     - _ColorMask: 15
     - _EnableExternalAlpha: 0
+    - _LvlMax: 0.9
+    - _LvlMin: 0
     - _PixelCount: 16
     - _Stencil: 0
     - _StencilComp: 8
@@ -49,7 +51,7 @@ Material:
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
-    - _level: 1
+    - _level: 0.59
     - _waveHeight: 0.05
     - _waveSmooth: 0.1
     - _waveSpeed: 0.2

@@ -10,6 +10,7 @@ public class TestItem : Item
     [SerializeField] private float CD = 0.1f;
     private float lastUse;
 
+    [SerializeField] public float HealAmnt = 10;
     private void Start()
     {
         Base.onClickDownMain += UseMain;
@@ -23,6 +24,9 @@ public class TestItem : Item
         lastUse = Time.time;
         CurrentCount--;
         Instantiate(ParticlePrefab, transform.position, Quaternion.Euler(0, 0, 90));
+
+        var health = _playerInventory.GetComponent<Health>();
+        health.GetDamage(HealAmnt);
     }
 
     private void UseSecondary()
@@ -30,5 +34,8 @@ public class TestItem : Item
         if (Time.time < lastUse + CD) return;
         lastUse = Time.time;
         CurrentCount++;
+
+        var health = _playerInventory.GetComponent<Health>();
+        health.Heal(HealAmnt);
     }
 }

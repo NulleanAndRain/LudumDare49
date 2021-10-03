@@ -34,6 +34,14 @@ public abstract class Item : MonoBehaviour
     public event Action OnItemAmountChange = delegate { };
     public event Action OnItemEnded = delegate { };
 
+    protected ItemBase _base;
+    protected Inventory _playerInventory => _base.PlayerInventory;
+
+    private void Awake()
+    {
+        _base = GetComponent<ItemBase>();
+    }
+
     /// <summary>
     /// Add stack of items to this one
     /// </summary>
