@@ -181,14 +181,14 @@ public class Inventory : MonoBehaviour
 
     void inputItemControl()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetMouseButtonDown(0))
         { // left click down
             if (_inventory[currCell] != null)
             {
                 _inventory[currCell].ClickDownMain();
             }
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetMouseButtonUp(0))
         { // left click up
             if (_inventory[currCell] != null)
             {
@@ -196,14 +196,14 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetMouseButtonDown(1))
         { // right click down
             if (_inventory[currCell] != null)
             {
                 _inventory[currCell].ClickDownSecondary();
             }
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetMouseButtonUp(1))
         { // right click up
             if (_inventory[currCell] != null)
             {
