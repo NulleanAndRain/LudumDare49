@@ -17,9 +17,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] ItemBase[] _inventory = null;
     private int invSlots;
     private int _cell = 0;
-    private int currCell
+    public int currCell
     {
-        get => _cell; set
+        get => _cell;
+        set
         {
             _cell = value;
             if (_cell > invSlots - 1)
@@ -39,7 +40,6 @@ public class Inventory : MonoBehaviour
     public bool isCellClickable = true;
 
     [Header("Other")]
-    private PlayerControl pc;
     public float dropDistance;
     public float DropVertOffset;
 
@@ -48,7 +48,6 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         invSlots = _inventory.Length;
-        pc = GetComponent<PlayerControl>();
 
         void cellOnClick(int n)
         {
@@ -100,53 +99,6 @@ public class Inventory : MonoBehaviour
         updateInv();
     }
 
-    private void Update()
-    {
-        InputCellControll();
-        inputItemControl();
-    }
-
-    private void initSerializedInv()
-    {
-        throw new NotImplementedException("tbd later, dont use");
-        // todo: finish initialization
-        //      for (int i = 0; i < invSlots; i++) {
-
-        //}
-    }
-
-    public void InputCellControll()
-    {
-        // Mouse Wheel
-        if (activeMouseWheel)
-        {
-            float mw = Input.GetAxisRaw("Mouse ScrollWheel");
-            if (mw != 0)
-            {
-                if (mw < -0.1)
-                {
-                    currCell++;
-                }
-                if (mw > 0.1)
-                {
-                    currCell--;
-                }
-            }
-        }
-        // Numbers 
-        if (activeNumbersCell)
-        {
-            if (Input.GetKey(KeyCode.Alpha1))
-                currCell = 0;
-            if (Input.GetKey(KeyCode.Alpha2))
-                currCell = 1;
-            if (Input.GetKey(KeyCode.Alpha3))
-                currCell = 2;
-            if (Input.GetKey(KeyCode.Alpha4))
-                currCell = 3;
-        }
-    }
-
     void updateInv()
     {
         for (int i = 0; i < invSlots; i++)
@@ -179,38 +131,10 @@ public class Inventory : MonoBehaviour
         //currCell = _cell; // ???
     }
 
-    void inputItemControl()
-    {
-        if (Input.GetMouseButtonDown(0))
-        { // left click down
-            if (_inventory[currCell] != null)
-            {
-                _inventory[currCell].ClickDownMain();
-            }
-        }
-        if (Input.GetMouseButtonUp(0))
-        { // left click up
-            if (_inventory[currCell] != null)
-            {
-                _inventory[currCell].ClickDownMain();
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        { // right click down
-            if (_inventory[currCell] != null)
-            {
-                _inventory[currCell].ClickDownSecondary();
-            }
-        }
-        if (Input.GetMouseButtonUp(1))
-        { // right click up
-            if (_inventory[currCell] != null)
-            {
-                _inventory[currCell].ClickDownSecondary();
-            }
-        }
-    }
+    public void MainClickDown() => _inventory[currCell]?.ClickDownMain();
+    public void MainClickUp() => _inventory[currCell]?.ClickUpMain();
+    public void SecondaryClickDown() => _inventory[currCell]?.ClickDownSecondary();
+    public void SecondaryClickUp() => _inventory[currCell]?.ClickDownSecondary();
 
     /// <summary>
     /// Пробует добавить предмет в инвентарь

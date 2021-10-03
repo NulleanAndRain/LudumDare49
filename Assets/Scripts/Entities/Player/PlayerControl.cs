@@ -4,24 +4,28 @@ using UnityEngine;
 [RequireComponent(typeof(WalkerComponent), typeof(Health))]
 public class PlayerControl : MonoBehaviour
 {
-    public GameUI gameUI; //added
-
+    public GameUI gameUI;
     public Transform viewPos;
 
     private Vector3 _localScale = Vector3.one;
-
     private Vector2 _vel;
 
     [SerializeField] private Animator _animator;
     [SerializeField] private AnimationControl _controller;
     private Health health;
     private WalkerComponent walker;
+    private Inventory inventory;
+
+    [Header("Inventory Control")]
+    public bool IsMouseWheelActive;
+
     public int animNum { get; private set; }
 
     private void Start()
     {
         health = GetComponent<Health>();
         walker = GetComponent<WalkerComponent>();
+        inventory = GetComponent<Inventory>();
 
         void updateHpBar(float currHP, float maxHP)
         {
@@ -64,7 +68,15 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel")) PauseControl.TogglePause();
 
+        CheckInvInput();
         if (health.isDowned || PauseControl.isPaused) return;
+
+        CheckMotion();
+        CheckMouseClicks();
+    }
+
+    private void CheckMotion()
+    {
         _vel.x = Input.GetAxis("Horizontal");
         _vel.y = Input.GetAxis("Vertical");
 
@@ -88,5 +100,52 @@ public class PlayerControl : MonoBehaviour
             // todo: add animation
             walker.Jump();
         else if (Input.GetButtonUp("Jump")) walker.StopJump();
+    }
+
+    private void CheckInvInput()
+    {
+        if (IsMouseWheelActive)
+        {
+            float scroll = Input.GetAxisRaw("Mouse ScrollWheel");
+            if (scroll != 0)
+            {
+                if (scroll < -0.1f)
+                {
+                    inventory.currCell++;
+                }
+                if (scroll > 0.1f)
+                {
+                    inventory.currCell--;
+                }
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Alpha1))
+            inventory.currCell = 0;
+        if (Input.GetKey(KeyCode.Alpha2))
+            inventory.currCell = 1;
+        if (Input.GetKey(KeyCode.Alpha3))
+            inventory.currCell = 2;
+        if (Input.GetKey(KeyCode.Alpha4))
+            inventory.currCell = 3;
+    }
+
+    private void CheckMouseClicks()
+    {
+        if (Input.GetMouseButtonDown(0))
+        { // left click down
+            inventory.MainClickDown();
+        }
+
+        if (Input.GetMouseButtonUp(0)) // left click up
+            inventory.SecondaryClickDown();
+
+        if (Input.GetMouseButtonDown(1))
+        { // right click down
+            inventory.SecondaryClickDown();
+        }
+
+        if (Input.GetMouseButtonUp(1)) // right click up
+            inventory.SecondaryClickUp();
     }
 }
