@@ -8,20 +8,17 @@ public class PlayerControl : MonoBehaviour
 
     public Transform viewPos;
 
-    public bool isFacingToCursor;
-
     private Vector3 _localScale = Vector3.one;
 
     private Vector2 _vel;
 
-    private Animator animator;
+    [SerializeField] private Animator animator;
     private Health health;
     private WalkerComponent walker;
     public int animNum { get; private set; }
 
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
         health = GetComponent<Health>();
         walker = GetComponent<WalkerComponent>();
 

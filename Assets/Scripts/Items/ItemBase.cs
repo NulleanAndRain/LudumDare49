@@ -24,6 +24,8 @@ public class ItemBase : MonoBehaviour
     private SpriteRenderer _renderer;
     private Rigidbody2D rb;
 
+    public Inventory PlayerInventory { get; private set; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +76,7 @@ public class ItemBase : MonoBehaviour
         {
             if (inv.AddItem(this))
             {
+                PlayerInventory = inv;
                 DisableWorldspaceItem();
             }
         }
@@ -81,6 +84,7 @@ public class ItemBase : MonoBehaviour
 
     public void HandleDrop()
     {
+        PlayerInventory = null;
         EnableWorldspaceItem();
     }
 

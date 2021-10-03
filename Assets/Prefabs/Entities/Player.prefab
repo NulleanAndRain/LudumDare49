@@ -615,11 +615,12 @@ GameObject:
   - component: {fileID: 7036365330330470452}
   - component: {fileID: 7036365330330470454}
   - component: {fileID: 7036365330330470474}
-  - component: {fileID: 7036365330330470475}
   - component: {fileID: 5926971654602408293}
+  - component: {fileID: 7036365330330470475}
   - component: {fileID: 1116268221}
   - component: {fileID: 1116268222}
   - component: {fileID: 1116268228}
+  - component: {fileID: 8415577714376853624}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -683,6 +684,17 @@ CapsuleCollider2D:
   m_Offset: {x: -0.013988346, y: -0.044832587}
   m_Size: {x: 0.41033494, y: 0.9103348}
   m_Direction: 0
+--- !u!210 &5926971654602408293
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036365330330470455}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!114 &7036365330330470475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,17 +710,7 @@ MonoBehaviour:
   gameUI: {fileID: 0}
   viewPos: {fileID: 7036365329883173489}
   isFacingToCursor: 0
---- !u!210 &5926971654602408293
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7036365330330470455}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  animator: {fileID: 7036365329637633870}
 --- !u!114 &1116268221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,8 +748,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 13
-  MaxJumpSpeed: 5
-  JumpForce: 200
+  MaxJumpSpeed: 7
+  JumpForce: 50
+  JumpHorizontalSpeed: 5
+  JumpSpeedFactor: 5
   JumpUpTime: 0.2
   Checker: {fileID: 1717067451}
 --- !u!114 &1116268228
@@ -767,7 +771,6 @@ MonoBehaviour:
   InventoryFolder: {fileID: 159596010}
   RightHand: {fileID: 7036365330640289206}
   LeftHand: {fileID: 5394702130460501163}
-  _leftHand: {fileID: 0}
   _inventory:
   - {fileID: 0}
   - {fileID: 0}
@@ -776,7 +779,21 @@ MonoBehaviour:
   activeMouseWheel: 1
   activeNumbersCell: 1
   isCellClickable: 1
-  dropDistance: 0
+  dropDistance: 3
+  DropVertOffset: 2
+--- !u!114 &8415577714376853624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036365330330470455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fe221bd84f85d4daab3e49b79aaf72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7036365329637633870}
 --- !u!1 &7036365330640289207
 GameObject:
   m_ObjectHideFlags: 0
