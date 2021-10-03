@@ -709,8 +709,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
   viewPos: {fileID: 7036365329883173489}
-  isFacingToCursor: 0
-  animator: {fileID: 7036365329637633870}
+  _animator: {fileID: 7036365329637633870}
+  _controller: {fileID: 8415577714376853624}
 --- !u!114 &1116268221
 MonoBehaviour:
   m_ObjectHideFlags: 0

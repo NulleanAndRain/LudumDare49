@@ -12,7 +12,8 @@ public class PlayerControl : MonoBehaviour
 
     private Vector2 _vel;
 
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private AnimationControl _controller;
     private Health health;
     private WalkerComponent walker;
     public int animNum { get; private set; }
@@ -34,8 +35,9 @@ public class PlayerControl : MonoBehaviour
             _vel.x = 0;
             _vel.y = 0;
             walker.UpdateMoveVector(_vel);
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isDowned", true);
+            _animator.SetBool("isWalking", false);
+            //_animator.SetBool("isDowned", true);
+            _controller.TriggerAnimation(AnimationTrigger.Downed);
             if (animNum < 4)
             {
                 _localScale.x *= -1;
@@ -48,7 +50,7 @@ public class PlayerControl : MonoBehaviour
         IEnumerator waitForRevive()
         {
             yield return new WaitForSeconds(GameManager.RespawnTime);
-            animator.SetBool("isDowned", false);
+            _controller.TriggerAnimation(AnimationTrigger.Reset);
             health.Revive();
             health.Heal(health.MaxHealth);
             _localScale = Vector3.one;
@@ -68,7 +70,7 @@ public class PlayerControl : MonoBehaviour
 
         var _magn = _vel.magnitude;
 
-        animator.SetBool("isWalking", _magn > 1e-3);
+        _animator.SetBool("isWalking", _magn > 1e-3);
 
         //animNum = Mathf.FloorToInt((viewAngle + 22.5f) / 45) % 8;
         if (_vel.x > 1e-3)
@@ -78,7 +80,7 @@ public class PlayerControl : MonoBehaviour
         //else
         //    animNum = 0;
 
-        animator.SetInteger("currDir", animNum);
+        _animator.SetInteger("currDir", animNum);
 
         walker.UpdateMoveVector(_vel);
 
