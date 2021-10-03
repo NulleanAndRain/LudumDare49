@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class AttakSystem : MonoBehaviour
 {
-    public int hp = 100;
+    //public int hp = 100;
+    public float saerchRadius;
+    public Vector2 EyesPos;
+    private Vector2 _eyePos { get => (Vector2)transform.position + EyesPos; }
+    Vector2 _rc_dir = Vector2.zero;
     [Header("Damage")]
     public int attakDamage;
     public int bodyDamaje;
