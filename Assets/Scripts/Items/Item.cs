@@ -53,8 +53,8 @@ public abstract class Item : MonoBehaviour
     {
         if (item.GetType() != this.GetType()) return false;
 
+        var rest = CurrentCount + item.CurrentCount - MaxStackSize;
         CurrentCount += item.CurrentCount;
-        var rest = CurrentCount - MaxStackSize;
         item.CurrentCount = rest;
         if (rest > 0)
         {

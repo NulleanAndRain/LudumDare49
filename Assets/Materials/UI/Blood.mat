@@ -42,7 +42,7 @@ Material:
     - _Col3L: 0.75
     - _ColorMask: 15
     - _EnableExternalAlpha: 0
-    - _LvlMax: 0.9
+    - _LvlMax: 0.8
     - _LvlMin: 0
     - _PixelCount: 16
     - _Stencil: 0

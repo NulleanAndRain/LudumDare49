@@ -220,8 +220,8 @@ public class Inventory : MonoBehaviour
     public bool AddItem(ItemBase item)
     {
         int i = 0;
-        while (_inventory[i] != null &&
-            i < invSlots)
+        while (i < invSlots &&
+            _inventory[i] != null)
         {
             if (_inventory[i].Item.TryAddItems(item.Item))
             {
