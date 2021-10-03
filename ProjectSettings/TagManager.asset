@@ -17,9 +17,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Entity
+  - Item
+  - Item_ground
   - 
   - 
   - 
