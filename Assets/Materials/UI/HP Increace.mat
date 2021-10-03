@@ -39,7 +39,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _botEdge: 0
     - _topEdge: 0
-    - _waveHeight: 0.1
+    - _waveHeight: 0.05
     - _waveSpeed: 0.2
     m_Colors:
     - _Color: {r: 0.52416, g: 0.9716981, b: 0.44459772, a: 1}

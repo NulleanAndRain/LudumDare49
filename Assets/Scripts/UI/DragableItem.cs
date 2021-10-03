@@ -47,9 +47,9 @@ public class DragableItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
 	public void OnEndDrag (PointerEventData eventData) {
 		if (slotTarget == -1)
-			ui.initItemDrop(slotNum);
+			ui.InitItemDrop(slotNum);
 		else
-			ui.initItemSwap(slotNum, slotTarget);
+			ui.InitItemSwap(slotNum, slotTarget);
 		Destroy(gameObject);
 	}
 }

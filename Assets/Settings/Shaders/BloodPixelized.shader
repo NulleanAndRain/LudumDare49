@@ -12,6 +12,7 @@
         _waveSpeed ("Wave Speed", Float) = 1
         
         _PixelCount("Pixel Count", Range(1, 1024)) = 16
+        _Aspect("Height to width aspect rate", Float) = 2
     }
 
     // нить жизни простых смертных обрывается здесь
@@ -63,6 +64,7 @@
             float4 _ColMain;
 
             int _PixelCount;
+            Float _Aspect;
             
             // gradient noise
             float2 unity_gradientNoise_dir(float2 p) {
@@ -160,7 +162,7 @@
                 return round((p * pixelCount)-0.5) / pixelCount;
             }
             float2 pixelize(float2 p, int pixelCount){
-                return float2(pixelize(p.x, pixelCount), pixelize(p.y, pixelCount));
+                return float2(pixelize(p.x, pixelCount), pixelize(p.y, pixelCount * _Aspect));
             }
 
 
@@ -181,7 +183,7 @@
                 float4 col = _Color;
                 float ll = saturate((h1 + h2)/2);
 
-                return mask * lerp(_ColDark, _ColMain, ll) * _Color;
+                return mask * lerp(_ColDark, _ColMain, ll * ll) * _Color;
             }
 
             ENDHLSL

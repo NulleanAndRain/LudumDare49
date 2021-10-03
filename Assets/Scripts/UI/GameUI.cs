@@ -48,20 +48,12 @@ public class GameUI : MonoBehaviour
 
     void Start()
     {
-        //FindObjects();
         SetInitialState();
         PauseControl.Unpause();
         inventoryPositionY = inventoryGroup.transform.localPosition.y;
         //menuGruopPositionY = gameMenuGroup.transform.localPosition.y;
-        //InitHPBar();
+        InitHPBar();
     }
-
-  //  private void FindObjects() {
-  //      // здесь была написана хуета поэтому я ее отключил
-  //      pausePanel = GameObject.Find("PausePanel");
-        //pauseControl = GameObject.Find("GameManager").GetComponent<PauseControl>();
-        //pauseButton = GameObject.Find("PauseButton");
-  //  }
 
     private void SetInitialState()
     {
@@ -102,8 +94,10 @@ public class GameUI : MonoBehaviour
     /// Делает выбранную клетку больше и возвращает осатальные к обычному размеру
     /// </summary>
     /// <param name="n"></param>
-    public void setActiveCell(int n) {
-        for (int i = 0; i < InvSlots.Length; i++) {
+    public void setActiveCell(int n)
+    {
+        for (int i = 0; i < InvSlots.Length; i++)
+        {
             if (i == n)
                 InvSlots[n].GetComponent<RectTransform>().sizeDelta = SelectedCellSize;
             else
@@ -115,7 +109,8 @@ public class GameUI : MonoBehaviour
     /// Используется чтобы вызвать событие переключения слота
     /// </summary>
     /// <param name="n">Номер выбранного слота</param>
-    public void SelectCell (int n) {
+    public void SelectCell(int n)
+    {
         onCellClick(n);
     }
 
@@ -145,39 +140,35 @@ public class GameUI : MonoBehaviour
     //    pausePanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, 0), alphaChannelTime);
     //    pausePanel.SetActive(false);
     //    pauseButton.SetActive(true);
-        
+
     //}
 
-    //public void HealthScale(float percent)
-    //{
-    //    //percent = -percent;
-    //    if (percent > 100) percent = 100;
-    //    if (percent < 0) percent = 0;
-    //    percent -= 100;
-    //    percent *= perToHealthFactor;
-    //    hp_bar.GetComponent<RectTransform>().offsetMax = new Vector2(hp_bar.GetComponent<RectTransform>().offsetMax.x, percent);
-    //    hp_bar_behind.GetComponent<RectTransform>().DOSizeDelta(new Vector2(hp_bar_behind.GetComponent<RectTransform>().offsetMax.x, percent), hpTime).SetEase(Ease.InQuart).SetUpdate(true);
-    //}
 
     float oldHP = 1f;
-    public void updateHpBar (float percent) { //то же самое, но по-человечески, универсальнее и понятнее
+    public void UpdateHpBar(float percent)
+    {
         var mat = hp_bar_img.material;
         mat.SetFloat("_level", percent);
         hp_bar_img.material = mat;
-        if (percent < oldHP) {
-            StartCoroutine(changeBackMatVal(oldHP, percent));
-        } else {
-            StartCoroutine(healHPBarAnim(oldHP, percent));
+        if (percent < oldHP)
+        {
+            StartCoroutine(ChangeBackMatVal(oldHP, percent));
+        }
+        else
+        {
+            StartCoroutine(HealHPBarAnim(oldHP, percent));
         }
         oldHP = percent;
     }
-    private IEnumerator changeBackMatVal(float oldVal, float newVal) {
+    private IEnumerator ChangeBackMatVal(float oldVal, float newVal)
+    {
         var mat = hp_bar_back_img.material;
         mat.SetFloat("_level", oldVal);
         hp_bar_back_img.material = mat;
         float startTime = Time.unscaledTime;
 
-        while (startTime + hpTime > Time.unscaledTime) {
+        while (startTime + hpTime > Time.unscaledTime)
+        {
             yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
             float dt = (Time.unscaledTime - startTime) / hpTime;
             float val = Mathf.Lerp(oldVal, newVal, dt * dt);
@@ -188,13 +179,15 @@ public class GameUI : MonoBehaviour
         mat.SetFloat("_level", newVal);
         hp_bar_back_img.material = mat;
     }
-    private IEnumerator healHPBarAnim(float botEdge, float topEdge) {
+    private IEnumerator HealHPBarAnim(float botEdge, float topEdge)
+    {
         var mat = hp_bar_heal_img.material;
         float startTime = Time.unscaledTime;
         mat.SetFloat("_topEdge", topEdge);
         //hp_bar_heal.SetActive(true);
 
-        while (startTime + hpTime > Time.unscaledTime) {
+        while (startTime + hpTime > Time.unscaledTime)
+        {
             yield return new WaitForSecondsRealtime(Time.unscaledDeltaTime);
             float dt = (Time.unscaledTime - startTime) / hpTime;
             float val = Mathf.Lerp(botEdge, topEdge, dt * dt);
@@ -206,19 +199,22 @@ public class GameUI : MonoBehaviour
         hp_bar_heal_img.material = mat;
         //hp_bar_heal.SetActive(false);
     }
-    
-    public void updateInventorySprite (int n, Sprite sprite, int itemAmount) {
+
+    public void UpdateInventorySprite(int n, Sprite sprite, int itemAmount)
+    {
         var cell = InvSlots[n];
         cell.Sprite.sprite = sprite;
         cell.SetActiveSprite(sprite != null);
         cell.Amount = itemAmount;
     }
 
-    public void initItemDrop (int n) {
+    public void InitItemDrop(int n)
+    {
         onItemDrop(n);
-	}
+    }
 
-    public void initItemSwap (int i1, int i2) {
+    public void InitItemSwap(int i1, int i2)
+    {
         onItemSwap(i1, i2);
     }
 }

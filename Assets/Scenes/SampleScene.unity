@@ -531,6 +531,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.39
       objectReference: {fileID: 0}
@@ -546,6 +551,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -558,16 +568,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
         type: 3}
@@ -928,6 +928,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.61
       objectReference: {fileID: 0}
@@ -943,6 +948,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -955,16 +965,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 46531405930108077, guid: 155eb1bc049156f40b045e1a27a7bd8f,
         type: 3}
@@ -1139,8 +1139,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
       propertyPath: m_VerticalAlignment
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
+        type: 3}
+      propertyPath: m_overrideHtmlColors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
@@ -1149,17 +1159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
-      propertyPath: m_overflowMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
-        type: 3}
       propertyPath: m_enableVertexGradient
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1895343111092430702, guid: 84b445da9122dbd4992aed5c106ddaeb,
-        type: 3}
-      propertyPath: m_overrideHtmlColors
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2667433582381043586, guid: 84b445da9122dbd4992aed5c106ddaeb,
@@ -1169,13 +1169,13 @@ PrefabInstance:
       objectReference: {fileID: 510285070}
     - target: {fileID: 2667433582381043586, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
-      propertyPath: _heigthAdding
-      value: 20
+      propertyPath: _minHeigth
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2667433582381043586, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}
-      propertyPath: _minHeigth
-      value: 40
+      propertyPath: _heigthAdding
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6106154109336891547, guid: 84b445da9122dbd4992aed5c106ddaeb,
         type: 3}

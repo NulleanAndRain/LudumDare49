@@ -49,7 +49,7 @@ Material:
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
     - _level: 0.65
-    - _waveHeight: 0.1
+    - _waveHeight: 0.05
     - _waveSmooth: 0.1
     - _waveSpeed: 0.2
     m_Colors:

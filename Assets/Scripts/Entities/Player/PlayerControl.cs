@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
 
         void updateHpBar(float currHP, float maxHP)
         {
-            gameUI.updateHpBar(currHP / maxHP);
+            gameUI.UpdateHpBar(currHP / maxHP);
         }
 
         health.onHealthUpdate += updateHpBar;
