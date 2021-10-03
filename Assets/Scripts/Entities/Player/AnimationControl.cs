@@ -13,7 +13,7 @@ public class AnimationControl : MonoBehaviour
         _animator.SetTrigger(trigger.ToString());
     }
 
-    public float GetCurrentAnimLength() => _animator.GetCurrentAnimatorStateInfo(_layer).length;
+    public float CurrentAnimLength => _animator.GetCurrentAnimatorStateInfo(_layer).length;
 }
 public enum AnimationTrigger
 {

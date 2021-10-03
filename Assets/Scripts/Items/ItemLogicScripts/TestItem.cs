@@ -37,5 +37,15 @@ public class TestItem : Item
 
         var health = _playerInventory.GetComponent<Health>();
         health.Heal(HealAmnt);
+
+        StartCoroutine(_animate());
+    }
+
+    private IEnumerator _animate()
+    {
+        var anim = _playerInventory.GetComponent<AnimationControl>();
+        anim.TriggerAnimation(AnimationTrigger.Downed);
+        yield return new WaitForSeconds(anim.CurrentAnimLength);
+        anim.TriggerAnimation(AnimationTrigger.Reset);
     }
 }
