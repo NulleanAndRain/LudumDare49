@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PotionRed
+  m_Shader: {fileID: 4800000, guid: 6b33936c2b8051445ba478d337e4c960, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Aspect: 1
+    - _Col1L: 0.2
+    - _Col2L: 0.5
+    - _Col3L: 0.75
+    - _ColorMask: 15
+    - _EnableExternalAlpha: 0
+    - _LvlMax: 0.9
+    - _LvlMin: 0.1
+    - _PixelCount: 64
+    - _Seed: 0.5466
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    - _level: 0.9
+    - _waveHeight: 0.03
+    - _waveSmooth: 0.1
+    - _waveSpeed: 0.02
+    m_Colors:
+    - _ColDark: {r: 0.29799998, g: 0, b: 0, a: 1}
+    - _ColLight: {r: 0.6415094, g: 0.099857606, b: 0.099857606, a: 1}
+    - _ColLighter: {r: 0.8679245, g: 0.09416164, b: 0.09416164, a: 1}
+    - _ColMain: {r: 0.9528302, g: 0.1033731, b: 0.1033731, a: 1}
+    - _ColRefl: {r: 0.936, g: 0.936, b: 0.936, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
