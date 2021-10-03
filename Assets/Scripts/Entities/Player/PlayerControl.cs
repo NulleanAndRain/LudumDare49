@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(WalkerComponent), typeof(Health))]
 public class PlayerControl : MonoBehaviour
 {
+    [Header("Scene objects")]
     public GameUI gameUI;
+    [SerializeField] private EventSystem _eventSystem;
+
+    [Header("Self components")]
     public Transform viewPos;
-
-    private Vector3 _localScale = Vector3.one;
-    private Vector2 _vel;
-
     [SerializeField] private Animator _animator;
     [SerializeField] private AnimationControl _controller;
     private Health health;
@@ -18,6 +19,14 @@ public class PlayerControl : MonoBehaviour
 
     [Header("Inventory Control")]
     public bool IsMouseWheelActive;
+    public float MouseClickCD;
+
+    private float _leftClickLastUse;
+    private float _rightClickLastUse;
+
+
+    private Vector3 _localScale = Vector3.one;
+    private Vector2 _vel;
 
     public int animNum { get; private set; }
 
@@ -109,11 +118,11 @@ public class PlayerControl : MonoBehaviour
             float scroll = Input.GetAxisRaw("Mouse ScrollWheel");
             if (scroll != 0)
             {
-                if (scroll < -0.1f)
+                if (scroll < -0.01f)
                 {
                     inventory.currCell++;
                 }
-                if (scroll > 0.1f)
+                if (scroll > 0.01f)
                 {
                     inventory.currCell--;
                 }
@@ -132,17 +141,25 @@ public class PlayerControl : MonoBehaviour
 
     private void CheckMouseClicks()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.time > _leftClickLastUse + MouseClickCD)
         { // left click down
-            inventory.MainClickDown();
+            if (!_eventSystem.IsPointerOverGameObject())
+            {
+                _leftClickLastUse = Time.time;
+                inventory.MainClickDown();
+            }
         }
 
         if (Input.GetMouseButtonUp(0)) // left click up
             inventory.SecondaryClickDown();
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && Time.time > _rightClickLastUse + MouseClickCD)
         { // right click down
-            inventory.SecondaryClickDown();
+            if (!_eventSystem.IsPointerOverGameObject())
+            {
+                _rightClickLastUse = Time.time;
+                inventory.SecondaryClickDown();
+            }
         }
 
         if (Input.GetMouseButtonUp(1)) // right click up

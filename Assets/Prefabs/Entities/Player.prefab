@@ -708,9 +708,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
+  _eventSystem: {fileID: 0}
   viewPos: {fileID: 7036365329883173489}
   _animator: {fileID: 7036365329637633870}
   _controller: {fileID: 8415577714376853624}
+  IsMouseWheelActive: 1
 --- !u!114 &1116268221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,10 +749,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb54fe1601361242a72c48f581f2e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 13
+  Speed: 12
   MaxJumpSpeed: 7
   JumpForce: 50
-  JumpHorizontalSpeed: 5
+  JumpHorizontalSpeed: 4
   JumpSpeedFactor: 5
   JumpUpTime: 0.2
   Checker: {fileID: 1717067451}

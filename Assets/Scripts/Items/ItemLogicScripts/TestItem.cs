@@ -15,7 +15,7 @@ public class TestItem : Item
     {
         Base.onClickDownMain += UseMain;
         Base.onClickDownSecondary += UseSecondary;
-        lastUse = 0;
+        lastUse = -2 * CD;
     }
 
     private void UseMain()
@@ -45,7 +45,7 @@ public class TestItem : Item
     {
         var anim = _playerInventory.GetComponent<AnimationControl>();
         anim.TriggerAnimation(AnimationTrigger.Downed);
-        yield return new WaitForSeconds(anim.CurrentAnimLength);
+        yield return new WaitForSeconds(anim.CurrentAnimLength - 0.5f);
         anim.TriggerAnimation(AnimationTrigger.Reset);
     }
 }

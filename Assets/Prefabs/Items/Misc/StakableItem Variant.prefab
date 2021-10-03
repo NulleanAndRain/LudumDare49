@@ -19,7 +19,8 @@ MonoBehaviour:
   ParticlePrefab: {fileID: 8634901305734946369, guid: 449ac147138c4304d99be5c8784fd90b,
     type: 3}
   Base: {fileID: 1513694260043935737}
-  CD: 0.1
+  CD: 3
+  HealAmnt: 10
 --- !u!1001 &3886504065379963029
 PrefabInstance:
   m_ObjectHideFlags: 0
