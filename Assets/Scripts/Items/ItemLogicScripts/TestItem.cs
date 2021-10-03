@@ -5,7 +5,6 @@ using UnityEngine;
 public class TestItem : Item
 {
     public GameObject ParticlePrefab;
-    [SerializeField] private ItemBase Base = null;
 
     [SerializeField] private float CD = 0.1f;
     private float lastUse;
@@ -13,8 +12,8 @@ public class TestItem : Item
     [SerializeField] public float HealAmnt = 10;
     private void Start()
     {
-        Base.onClickDownMain += UseMain;
-        Base.onClickDownSecondary += UseSecondary;
+        _base.onClickDownMain += UseMain;
+        _base.onClickDownSecondary += UseSecondary;
         lastUse = -2 * CD;
     }
 

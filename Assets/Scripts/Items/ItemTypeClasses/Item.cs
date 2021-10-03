@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
+    [Header("Item params")]
     [SerializeField] private int _maxStackSize = 1;
     public int MaxStackSize => _maxStackSize;
 

@@ -16,7 +16,7 @@ public class ItemBase : MonoBehaviour
 
     public bool IsSelected { get; private set; }
 
-    public Item Item;
+    public Item Item { get; private set; }
     public Collider2D pickUpTrigger;
     public GameObject WorldspacePart;
     public GameObject ActiveItemPart;
