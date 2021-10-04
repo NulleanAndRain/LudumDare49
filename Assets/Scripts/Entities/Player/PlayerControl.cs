@@ -91,7 +91,7 @@ public class PlayerControl : MonoBehaviour
 
         var _magn = _vel.magnitude;
 
-        _animator.SetBool("isWalking", _magn > 1e-3);
+        //_animator.SetBool("isWalking", _magn > 1e-3);
 
         //animNum = Mathf.FloorToInt((viewAngle + 22.5f) / 45) % 8;
         if (_vel.x > 1e-3)
@@ -101,7 +101,7 @@ public class PlayerControl : MonoBehaviour
         //else
         //    animNum = 0;
 
-        _animator.SetInteger("currDir", animNum);
+        //_animator.SetInteger("currDir", animNum);
 
         walker.UpdateMoveVector(_vel);
 
