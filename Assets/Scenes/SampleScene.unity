@@ -200,7 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 70781306}
   - component: {fileID: 70781307}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 94246010}
   - component: {fileID: 94246011}
   - component: {fileID: 94246012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_1
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 6bfd5f3c15e1ee7498657be747544985, type: 3}
@@ -438,7 +438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131649966}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1306,7 +1306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1189402597}
   - component: {fileID: 1189402596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2275,6 +2275,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 296407777}
     m_Modifications:
+    - target: {fileID: 251035358, guid: 0ca9d549534732e4a84d66cc1b319bf7, type: 3}
+      propertyPath: KnockbackForce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1744892472881793866, guid: 0ca9d549534732e4a84d66cc1b319bf7,
         type: 3}
       propertyPath: m_RootOrder
