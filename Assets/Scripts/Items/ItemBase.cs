@@ -49,6 +49,8 @@ public class ItemBase : MonoBehaviour
     public Sprite Sprite => _renderer.sprite;
     public Material SpriteMaterial => _renderer.material;
 
+    private Action _addAction;
+
     public void ClickDownMain()
     {
         onClickDownMain();
@@ -87,12 +89,32 @@ public class ItemBase : MonoBehaviour
         if (IsInInventory) return;
         if (collision.TryGetComponent(out Inventory inv))
         {
-            if (inv.AddItem(this))
+            bool tryAddToInv()
             {
-                PlayerInventory = inv;
-                PlayerAnim = inv.GetComponent<AnimationControl>();
-                DisableWorldspaceItem();
+                if (inv.AddItem(this))
+                {
+                    PlayerInventory = inv;
+                    PlayerAnim = inv.GetComponent<AnimationControl>();
+                    DisableWorldspaceItem();
+                    inv.OnInventoryChange -= _addAction;
+                    _addAction = null;
+                    return true;
+                }
+                return false;
             }
+
+            _addAction = () => tryAddToInv();
+
+            if (!tryAddToInv())
+                inv.OnInventoryChange += _addAction;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (_addAction != null && collision.TryGetComponent(out Inventory inv))
+        {
+            inv.OnInventoryChange -= _addAction;
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [Header("Global objects")]
     public GameUI ui;
     public Transform center;
 
@@ -13,8 +14,7 @@ public class Inventory : MonoBehaviour
     //public Transform LeftHand;
 
     [Header("Inventory Slots")]
-
-    [SerializeField] ItemBase[] _inventory = null;
+    [SerializeField] List<ItemBase> _inventory = null;
     private int invSlots;
     private int _cell = 0;
     public int currCell
@@ -32,9 +32,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
     [Header("Controls")]
-
     public bool activeMouseWheel = true;
     public bool activeNumbersCell = true;
     public bool isCellClickable = true;
@@ -44,10 +42,11 @@ public class Inventory : MonoBehaviour
     public float DropVertOffset;
 
     public Item GetItem(int cell) => _inventory[cell]?.Item;
+    public event Action OnInventoryChange = delegate { };
 
     private void Start()
     {
-        invSlots = _inventory.Length;
+        invSlots = _inventory.Count;
 
         void cellOnClick(int n)
         {
@@ -79,6 +78,7 @@ public class Inventory : MonoBehaviour
             {
                 item.transform.position = (Vector2)center.position + dir + Vector2.up * DropVertOffset;
             }
+            OnInventoryChange();
             item.HandleDrop();
 
             updateInv();
@@ -92,6 +92,7 @@ public class Inventory : MonoBehaviour
             _inventory[i1] = temp;
 
             updateInv();
+            OnInventoryChange();
         }
         ui.onItemSwap += itemSwap;
 
@@ -127,7 +128,6 @@ public class Inventory : MonoBehaviour
         }
     
         ui.setActiveCell(currCell);
-        //currCell = _cell; // ???
     }
 
     public void MainClickDown() => _inventory[currCell]?.ClickDownMain();
@@ -142,6 +142,7 @@ public class Inventory : MonoBehaviour
     /// <returns>true - предмет добавлен в инвентарь, false - предмет не добавлен</returns>
     public bool AddItem(ItemBase item)
     {
+        //if (_inventory.Contains(item)) return true;
         int i = 0;
         while (i < invSlots &&
             _inventory[i] != null)
@@ -168,8 +169,10 @@ public class Inventory : MonoBehaviour
                     item.Item.OnItemAmountChange += updateInv;
                     _inventory[i] = null;
                     updateInv();
+                    OnInventoryChange();
                 }
                 item.Item.OnItemEnded += remove;
+                OnInventoryChange();
                 return true;
             }
         }
