@@ -10,8 +10,10 @@ public class DamagingProjectileComponent : MonoBehaviour {
 
 	private List<GameObject> damagedObjects = new List<GameObject>();
 
+	public GameObject owner;
+
 	public void damageTarget(GameObject target, float damage, Vector3 center) {
-		if (damagedObjects.Contains(target)) return;
+		if (target == owner || damagedObjects.Contains(target)) return;
 		damagedObjects.Add(target);
 
 		Health health = target.GetComponent<Health>();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer), typeof(Collider2D), typeof(Item))]
+[RequireComponent(typeof(Collider2D), typeof(Item))]
 public class ItemBase : MonoBehaviour
 {
     public event Action onClickDownMain = delegate { };
@@ -21,7 +21,7 @@ public class ItemBase : MonoBehaviour
     public GameObject WorldspacePart;
     public GameObject ActiveItemPart;
 
-    private SpriteRenderer _renderer;
+    [SerializeField] private SpriteRenderer _renderer;
     private Rigidbody2D rb;
 
     public Inventory PlayerInventory { get; private set; }
@@ -31,7 +31,6 @@ public class ItemBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _renderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         Item = GetComponent<Item>();
     }
