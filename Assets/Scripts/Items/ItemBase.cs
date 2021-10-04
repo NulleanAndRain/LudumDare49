@@ -18,12 +18,15 @@ public class ItemBase : MonoBehaviour
     public bool IsSelected { get; private set; }
 
     public Item Item { get; private set; }
+    [Header("Components")]
     public Collider2D pickUpTrigger;
-    public GameObject WorldspacePart;
-    public GameObject ActiveItemPart;
-
     [SerializeField] private SpriteRenderer _renderer;
     private Rigidbody2D rb;
+
+    [Header("Objects")]
+    public GameObject WorldspacePart;
+    public GameObject ActiveItemPart;
+    public Transform DisplayData;
 
     public Inventory PlayerInventory { get; private set; }
     public AnimationControl PlayerAnim { get; private set; }
@@ -43,7 +46,7 @@ public class ItemBase : MonoBehaviour
         WorldspacePart.SetActive(true);
     }
 
-    public Sprite GetSprite => _renderer.sprite;
+    public Sprite Sprite => _renderer.sprite;
 
     public void ClickDownMain()
     {

@@ -105,11 +105,11 @@ public class Inventory : MonoBehaviour
             var item = _inventory[i];
             if (item != null)
             {
-                ui.UpdateInventorySprite(i, item.GetSprite, item.Item.CurrentCount);
+                ui.UpdateInventorySprite(i, item.Sprite, item.Item.CurrentCount, item.DisplayData);
             }
             else
             {
-                ui.UpdateInventorySprite(i, null, 0);
+                ui.UpdateInventorySprite(i, null);
             }
 
             if (item != null)

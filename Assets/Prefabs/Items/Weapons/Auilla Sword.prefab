@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1744892472881793866}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!212 &236940862
 SpriteRenderer:
@@ -273,6 +273,46 @@ PrefabInstance:
       value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 3606150027795925340, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496472322240529249, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496472322240529249, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496472322240529249, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496472322240529249, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496472322240529249, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496472322240529249, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496472322240529249, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496472322240529249, guid: a3f073993ac4bef4da329856418eed8f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -45
