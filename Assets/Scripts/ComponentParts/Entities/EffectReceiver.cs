@@ -23,7 +23,11 @@ public class EffectReceiver : MonoBehaviour
     }
 
     private void Subscribe() => GameManager.Instance.onEffectTick += onTick;
-    private void Unsubscribe() => GameManager.Instance.onEffectTick -= onTick;
+    private void Unsubscribe()
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.onEffectTick -= onTick;
+    }
 
     private void onTick()
     {
