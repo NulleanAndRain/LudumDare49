@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationControl : MonoBehaviour
 {
     [SerializeField] private Animator _animator = null;
+    public AnimTrigger Trigger = null;
     private int _layer = 0;
 
     public void TriggerAnimation(AnimationTrigger trigger)
@@ -14,6 +16,7 @@ public class AnimationControl : MonoBehaviour
     }
 
     public float CurrentAnimLength => _animator.GetCurrentAnimatorStateInfo(_layer).length;
+
 }
 public enum AnimationTrigger
 {

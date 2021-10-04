@@ -25,6 +25,7 @@ public class ItemBase : MonoBehaviour
     private Rigidbody2D rb;
 
     public Inventory PlayerInventory { get; private set; }
+    public AnimationControl PlayerAnim { get; private set; }
 
 
     // Start is called before the first frame update
@@ -77,6 +78,7 @@ public class ItemBase : MonoBehaviour
             if (inv.AddItem(this))
             {
                 PlayerInventory = inv;
+                PlayerAnim = inv.GetComponent<AnimationControl>();
                 DisableWorldspaceItem();
             }
         }

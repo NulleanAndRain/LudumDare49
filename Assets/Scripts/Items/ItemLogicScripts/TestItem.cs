@@ -42,7 +42,7 @@ public class TestItem : Item
 
     private IEnumerator _animate()
     {
-        var anim = _playerInventory.GetComponent<AnimationControl>();
+        var anim = _base.PlayerAnim;
         anim.TriggerAnimation(AnimationTrigger.Downed);
         yield return new WaitForSeconds(anim.CurrentAnimLength - 0.5f);
         anim.TriggerAnimation(AnimationTrigger.Reset);
