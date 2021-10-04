@@ -71,4 +71,14 @@ public abstract class Item : MonoBehaviour
 
     [SerializeField] private string _itemDescription = string.Empty;
     public string ItemDescription => _itemDescription;
+
+    protected void EnableActivePart()
+    {
+        _base.ActiveItemPart.SetActive(true);
+    }
+
+    protected void DisableActivePart()
+    {
+        _base.ActiveItemPart.SetActive(false);
+    }
 }

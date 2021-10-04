@@ -27,12 +27,16 @@ public class ItemBase : MonoBehaviour
     public Inventory PlayerInventory { get; private set; }
     public AnimationControl PlayerAnim { get; private set; }
 
+    [Header("InitState")]
+    [SerializeField] private bool _isInWorld = true;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Item = GetComponent<Item>();
+        ActiveItemPart.SetActive(!_isInWorld);
+        WorldspacePart.SetActive(_isInWorld);
     }
 
     public Sprite GetSprite => _renderer.sprite;

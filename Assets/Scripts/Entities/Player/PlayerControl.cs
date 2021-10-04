@@ -95,9 +95,9 @@ public class PlayerControl : MonoBehaviour
 
         //animNum = Mathf.FloorToInt((viewAngle + 22.5f) / 45) % 8;
         if (_vel.x > 1e-3)
-            animNum = 2;
+            _animator.SetBool("FacingLeft", false);
         else if (_vel.x < -1e-3)
-            animNum = 6;
+            _animator.SetBool("FacingLeft", true);
         //else
         //    animNum = 0;
 

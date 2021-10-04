@@ -44,7 +44,7 @@ public class TestItem : Item
     {
         var anim = _base.PlayerAnim;
         anim.TriggerAnimation(AnimationTrigger.Downed);
-        yield return new WaitForSeconds(anim.CurrentAnimLength - 0.5f);
+        yield return new WaitForSeconds(anim.CurrentAnimLength(AnimationLayer.Base) - 0.5f);
         anim.TriggerAnimation(AnimationTrigger.Reset);
     }
 }

@@ -9,9 +9,9 @@ public class RustyKnife : AbstractSword
         IEnumerator _anim()
         {
             var animator = _base.PlayerAnim;
-            animator.TriggerAnimation(AnimationTrigger.Downed);
+            animator.TriggerAnimation(AnimationTrigger.Attack);
             yield return new WaitForEndOfFrame();
-            _anim_length = animator.CurrentAnimLength;
+            _anim_length = animator.CurrentAnimLength(AnimationLayer.Hands);
             yield return new WaitForSeconds(_anim_length);
             animator.TriggerAnimation(AnimationTrigger.Reset);
         }
