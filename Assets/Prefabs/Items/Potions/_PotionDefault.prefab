@@ -51,31 +51,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7666976974231018109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7684791854102435535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85e78f0b0ad12ff46a2aec3516bd2a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxStackSize: 1
-  _currentCount: 1
-  _itemName: 
-  _itemDescription: 
-  Effects:
-  - effect: {fileID: 0}
-    weight: 0
-  - effect: {fileID: 0}
-    weight: 0
-  - effect: {fileID: 0}
-    weight: 0
-  - effect: {fileID: 0}
-    weight: 0
 --- !u!58 &6054370343122650966
 CircleCollider2D:
   m_ObjectHideFlags: 0
