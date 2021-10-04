@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class SwordDefault : AbstractSword
 {
+    private int state = 0;
+
     protected override void UseMain()
     {
+        if (state != 0) return;
+        state++;
         var anim = _base.PlayerAnim;
         _projectile.owner = _playerInventory.gameObject;
 
-        int state = 0;
         void Act()
         {
-            if (state == 0)
+            if (state == 1)
             {
                 EnableActivePart();
-                state++;
+                state = 2;
             }
             else
             {
                 DisableActivePart();
                 _projectile.clearDamagedList();
                 anim.Trigger.onAnimTrigger -= Act;
+                state = 0;
             }
         }
 
