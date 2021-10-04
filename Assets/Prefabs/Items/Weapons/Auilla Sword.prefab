@@ -99,6 +99,52 @@ MonoBehaviour:
   _itemName: Auilla Sword
   _itemDescription: The legendary sharp sword
   Damage: 0
+  CritRate: 0
+  CritDmgMultiplyer: 0
+  KnockbackForce: 0
+  _trigger: {fileID: 4489692266692181419}
+  _projectile: {fileID: 7820832746570451870}
+--- !u!114 &7820832746570451870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744892472881793878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5ec5bc1701c8840b6e1632a72cde58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+--- !u!70 &1592092884783422671
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314757332430334704}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.004694559, y: 0.2662959}
+  m_Size: {x: 0.20437692, y: 0.5331018}
+  m_Direction: 0
+--- !u!114 &4489692266692181419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314757332430334704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b08576cdf0653458b66b58d552514b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4096305638164771877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209,12 +255,27 @@ PrefabInstance:
     - target: {fileID: 2372862863361638259, guid: a3f073993ac4bef4da329856418eed8f,
         type: 3}
       propertyPath: m_Name
-      value: Auilla
+      value: Auilla Sword
       objectReference: {fileID: 0}
     - target: {fileID: 2372862863361638259, guid: a3f073993ac4bef4da329856418eed8f,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606150027795925340, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606150027795925340, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606150027795925340, guid: a3f073993ac4bef4da329856418eed8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 8403309544166185876, guid: a3f073993ac4bef4da329856418eed8f,
         type: 3}
@@ -252,6 +313,12 @@ GameObject:
 --- !u!4 &1744892472881793866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2372862863361638255, guid: a3f073993ac4bef4da329856418eed8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4096305638164771877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &314757332430334704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4361523372405300949, guid: a3f073993ac4bef4da329856418eed8f,
     type: 3}
   m_PrefabInstance: {fileID: 4096305638164771877}
   m_PrefabAsset: {fileID: 0}

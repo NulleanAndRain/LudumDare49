@@ -2,28 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Aquilla : AbstractSword
+public class Aquilla : SwordDefault
 {
-    protected override void UseMain()
-    {
-        var anim = _base.PlayerAnim;
 
-        int state = 0;
-        void Act()
-        {
-            if (state == 0)
-            {
-                EnableActivePart();
-                state++;
-            }
-            else
-            {
-                DisableActivePart();
-                anim.Trigger.onAnimTrigger -= Act;
-            }
-        }
-
-        anim.Trigger.onAnimTrigger += Act;
-        anim.TriggerAnimation(AnimationTrigger.Attack);
-    }
 }
