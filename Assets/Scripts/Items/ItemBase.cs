@@ -14,6 +14,7 @@ public class ItemBase : MonoBehaviour
     public event Action onSelect = delegate { };
     public event Action onUnselect = delegate { };
 
+    public bool IsInInventory => PlayerInventory != null;
     public bool IsSelected { get; private set; }
 
     public Item Item { get; private set; }
@@ -27,16 +28,19 @@ public class ItemBase : MonoBehaviour
     public Inventory PlayerInventory { get; private set; }
     public AnimationControl PlayerAnim { get; private set; }
 
-    [Header("InitState")]
-    [SerializeField] private bool _isInWorld = true;
+
+    //[Header("InitState")]
+    //[SerializeField] private bool _isInWorldOnInit = true;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Item = GetComponent<Item>();
-        ActiveItemPart.SetActive(!_isInWorld);
-        WorldspacePart.SetActive(_isInWorld);
+        //ActiveItemPart.SetActive(!_isInWorldOnInit);
+        //WorldspacePart.SetActive(_isInWorldOnInit);
+        ActiveItemPart.SetActive(false);
+        WorldspacePart.SetActive(true);
     }
 
     public Sprite GetSprite => _renderer.sprite;
@@ -76,6 +80,7 @@ public class ItemBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (IsInInventory) return;
         if (collision.TryGetComponent(out Inventory inv))
         {
             if (inv.AddItem(this))
