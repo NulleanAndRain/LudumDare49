@@ -10,7 +10,7 @@ public abstract class AbstractSword : Item
     protected float _lastUse;
     protected float _anim_length = 0;
 
-    public override bool TryAddItems(Item item) => false;
+    public sealed override bool TryAddItems(Item item) => false;
 
     private void Start()
     {
