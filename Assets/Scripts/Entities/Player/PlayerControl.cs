@@ -49,7 +49,6 @@ public class PlayerControl : MonoBehaviour
             _vel.y = 0;
             walker.UpdateMoveVector(_vel);
             _animator.SetBool("isWalking", false);
-            //_animator.SetBool("isDowned", true);
             _controller.TriggerAnimation(AnimationTrigger.Downed);
             if (animNum < 4)
             {
