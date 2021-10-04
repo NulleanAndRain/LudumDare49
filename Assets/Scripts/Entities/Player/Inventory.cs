@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     [Header("Inventory Objects Folders")]
     public Transform InventoryFolder;
     public Transform RightHand;
-    public Transform LeftHand;
+    //public Transform LeftHand;
 
     [Header("Inventory Slots")]
 
@@ -57,7 +57,6 @@ public class Inventory : MonoBehaviour
         ui.onCellClick += cellOnClick;
 
         RightHand.DetachChildren();
-        LeftHand.DetachChildren();
 
         void itemDrop(int n)
         {
