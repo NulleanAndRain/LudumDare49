@@ -185,23 +185,23 @@
                 
                 float _l = lerp (_LvlMin, _LvlMax, _level) + _LvlMin;
 
-                if (h > _l) potionMask = (float4)0;
-                if (h < _LvlMin) potionMask = (float4)0;
+                if (h > _l || h < _LvlMin || potionMask.a <= 0.003 || mainCol.a <= 0.002)
+                    potionMask = (float4)0;
+                else {
+                    float h1 = pixelize(
+                        snoise(
+                            float2(
+                                uv.x  + _Time.y * _waveSpeed * _Seed * 0.341 + 1.21 * _SinTime.z,
+                                uv.y + _Time.x * _waveSpeed * _Seed * 35.165 + 2.5646 * _CosTime.x
+                            )
+                        ),
+                        _PixelCount);
+                    float h2 = pixelize(unity_gradientNoise(uv + _SinTime.y).x, _PixelCount);
 
-                float h1 = pixelize(
-                    snoise(
-                        float2(
-                            uv.x  + _Time.y * _waveSpeed * _Seed * 0.341 + 1.21 * _SinTime.z,
-                            uv.y + _Time.x * _waveSpeed * _Seed * 35.165 + 2.5646 * _CosTime.x
-                        )
-                    ),
-                    _PixelCount);
-                float h2 = pixelize(unity_gradientNoise(uv + _SinTime.y).x, _PixelCount);
+                    float ll = saturate((h1 + h2) / 2);
 
-                float ll = saturate((h1 + h2) / 2);
-
-                potionCol = lerp(_ColDark, _ColMain, ll) * potionMask.a;
-
+                    potionCol = lerp(_ColDark, _ColMain, ll) * potionMask.a;
+                }
 
                 float4 col = potionCol * (1 - mainCol.a) + mainCol * mainCol.a;
                 col.a = saturate(potionCol.a + mainCol.a);

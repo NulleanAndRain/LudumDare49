@@ -47,6 +47,7 @@ public class ItemBase : MonoBehaviour
     }
 
     public Sprite Sprite => _renderer.sprite;
+    public Material SpriteMaterial => _renderer.material;
 
     public void ClickDownMain()
     {

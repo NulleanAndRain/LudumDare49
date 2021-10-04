@@ -200,7 +200,7 @@ public class GameUI : MonoBehaviour
         //hp_bar_heal.SetActive(false);
     }
 
-    public void UpdateInventorySprite(int n, Sprite sprite, int itemAmount = 0, Transform data = null)
+    public void UpdateInventorySprite(int n, Sprite sprite, int itemAmount = 0, Transform data = null, Material material = null)
     {
         var cell = InvSlots[n];
         
@@ -215,6 +215,11 @@ public class GameUI : MonoBehaviour
             _t.rotation = data.localRotation;
             _t.localScale = data.localScale;
             _t.localPosition = data.localPosition;
+        }
+
+        if (material != null)
+        {
+            cell.Sprite.material = material;
         }
     }
 
