@@ -44,14 +44,7 @@ public abstract class AbstractSword : Item
 
     }
 
-    virtual protected void UseMain()
-    {
-        // trigger animation
-
-        // enable active part
-        // wait end of animation
-        // disable active part
-    }
+    virtual protected void UseMain() { }
 
     virtual protected void UseSecondary() { }
 

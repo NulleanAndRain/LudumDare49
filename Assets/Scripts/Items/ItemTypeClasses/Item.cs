@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ItemBase))]
 public abstract class Item : MonoBehaviour
 {
     [Header("Item params")]

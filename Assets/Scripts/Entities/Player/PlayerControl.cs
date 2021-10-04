@@ -89,19 +89,13 @@ public class PlayerControl : MonoBehaviour
         _vel.x = Input.GetAxis("Horizontal");
         _vel.y = Input.GetAxis("Vertical");
 
-        var _magn = _vel.magnitude;
 
-        //_animator.SetBool("isWalking", _magn > 1e-3);
+        //_animator.SetBool("isWalking", _vel.magnitude > 1e-3);
 
-        //animNum = Mathf.FloorToInt((viewAngle + 22.5f) / 45) % 8;
         if (_vel.x > 1e-3)
             _animator.SetBool("FacingLeft", false);
         else if (_vel.x < -1e-3)
             _animator.SetBool("FacingLeft", true);
-        //else
-        //    animNum = 0;
-
-        //_animator.SetInteger("currDir", animNum);
 
         walker.UpdateMoveVector(_vel);
 

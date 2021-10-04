@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D), typeof(Item))]
+[RequireComponent(typeof(Collider2D))]
 public class ItemBase : MonoBehaviour
 {
     public event Action onClickDownMain = delegate { };
