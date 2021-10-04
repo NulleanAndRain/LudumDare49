@@ -24,11 +24,14 @@ public enum AnimationTrigger
     None,
     Reset,
     Downed,
-    Attack
+    Attack,
+    Jump,
+    Land
 }
 
 public enum AnimationLayer
 {
     Base = 0,
-    Hands = 1
+    Body = 1,
+    Hands = 2
 }

@@ -23,12 +23,16 @@ public class WalkerComponent : MonoBehaviour {
     public Vector2 MoveVectorRaw { get; private set; }
     public bool CanMove { get; set; } = true;
 
+    public event Action onJump = delegate { };
+    public event Action onLand = delegate { };
+
     [Header("Ground check")]
     public GroundChecker Checker;
 
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        Checker.OnGrounded += () => onLand();
     }
 
     void FixedUpdate () {
@@ -60,11 +64,6 @@ public class WalkerComponent : MonoBehaviour {
 
             rb.AddForce(_v * rb.mass/50f, ForceMode2D.Impulse);
 
-            
-        }
-        if (!Checker.IsOnGround && !_isJumping)
-        {
-            
             
         }
 

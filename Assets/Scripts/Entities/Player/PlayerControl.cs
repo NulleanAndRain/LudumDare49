@@ -87,10 +87,10 @@ public class PlayerControl : MonoBehaviour
     private void CheckMotion()
     {
         _vel.x = Input.GetAxis("Horizontal");
-        _vel.y = Input.GetAxis("Vertical");
+        //_vel.y = Input.GetAxis("Vertical");
 
 
-        //_animator.SetBool("isWalking", _vel.magnitude > 1e-3);
+        _animator.SetBool("IsWalking", Mathf.Abs(_vel.x) > 1e-3);
 
         if (_vel.x > 1e-3)
             _animator.SetBool("FacingLeft", false);
@@ -100,9 +100,14 @@ public class PlayerControl : MonoBehaviour
         walker.UpdateMoveVector(_vel);
 
         if (Input.GetButtonDown("Jump"))
-            // todo: add animation
             walker.Jump();
-        else if (Input.GetButtonUp("Jump")) walker.StopJump();
+        else if (Input.GetButtonUp("Jump")) 
+            walker.StopJump();
+
+        walker.onJump += () =>
+            _controller.TriggerAnimation(AnimationTrigger.Jump);
+        walker.onLand += () =>
+            _controller.TriggerAnimation(AnimationTrigger.Land);
     }
 
     private void CheckInvInput()
